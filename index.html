@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizMaster Pro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <div class="header-left">
+                <span class="logo">⚡</span>
+                <h1>QuizMaster</h1>
+            </div>
+            <div class="header-right">
+                <div id="themeToggle" class="toggle-wrap">
+                    <span class="toggle-label-light">☀️</span>
+                    <div class="toggle-track">
+                        <div class="toggle-thumb"></div>
+                    </div>
+                    <span class="toggle-label-dark">🌙</span>
+                </div>
+            </div>
+        </header>
+
+        <nav class="tab-bar">
+            <button class="tab active" data-tab="quizzes">
+                <span class="tab-icon">📋</span> Quizzes
+            </button>
+            <button class="tab" data-tab="bookmarks">
+                <span class="tab-icon">🔖</span> Bookmarks
+            </button>
+            <button class="tab" data-tab="results">
+                <span class="tab-icon">📊</span> Results
+            </button>
+        </nav>
+
+        <main>
+            <section id="quizzes-tab" class="tab-content active">
+                <div class="section-header">
+                    <h2>Available Quizzes</h2>
+                    <button id="createMockBtn" class="btn-primary">
+                        <span>＋</span> Create Mock Test
+                    </button>
+                </div>
+                <div id="quizList" class="quiz-grid"></div>
+            </section>
+
+            <section id="bookmarks-tab" class="tab-content">
+                <div class="section-header">
+                    <h2>Bookmarked Questions</h2>
+                    <span id="bookmarkCount" class="badge">0</span>
+                </div>
+                <div id="bookmarkEmpty" class="empty-state">
+                    <span class="empty-icon">🔖</span>
+                    <p>No bookmarked questions yet</p>
+                </div>
+                <div id="bookmarkList" class="bookmark-list"></div>
+            </section>
+
+            <section id="results-tab" class="tab-content">
+                <div class="section-header">
+                    <h2>Your Results</h2>
+                </div>
+                <div id="resultStats" class="stats-grid"></div>
+                <div id="resultEmpty" class="empty-state">
+                    <span class="empty-icon">📊</span>
+                    <p>No quiz results yet</p>
+                </div>
+                <div id="resultList" class="result-list"></div>
+            </section>
+
+            <section id="quiz-view" class="tab-content">
+                <div class="quiz-top-bar">
+                    <button id="backBtn" class="btn-icon">✕</button>
+                    <div id="quizTitle" class="quiz-title-bar"></div>
+                    <div id="quizTimer" class="timer">00:00</div>
+                </div>
+                <div class="progress-bar-wrap">
+                    <div id="progressBar" class="progress-bar">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                    <span id="progressText" class="progress-text">0/0</span>
+                </div>
+                <div id="questionCard" class="question-card">
+                    <div class="question-top">
+                        <span id="questionNum" class="q-num">Q1</span>
+                        <span id="questionCat" class="q-cat"></span>
+                        <button id="bookmarkToggle" class="btn-bookmark">☆</button>
+                    </div>
+                    <h3 id="questionText" class="q-text"></h3>
+                    <div id="optionsList" class="options-list"></div>
+                </div>
+                <div class="quiz-bottom-bar">
+                    <button id="prevBtn" class="btn-nav">‹ Previous</button>
+                    <div id="questionDots" class="question-dots"></div>
+                    <button id="nextBtn" class="btn-nav btn-primary">Next ›</button>
+                    <button id="submitQuizBtn" class="btn-nav btn-submit">Submit Quiz</button>
+                </div>
+            </section>
+
+            <section id="result-view" class="tab-content">
+                <div class="result-container">
+                    <div class="result-hero">
+                        <h2>Quiz Complete!</h2>
+                        <div id="scoreCircle" class="score-circle">
+                            <svg viewBox="0 0 120 120">
+                                <circle class="score-bg" cx="60" cy="60" r="52"/>
+                                <circle id="scoreArc" class="score-arc" cx="60" cy="60" r="52"/>
+                            </svg>
+                            <div class="score-inner">
+                                <span id="scoreValue" class="score-val">0%</span>
+                                <span class="score-label">Score</span>
+                            </div>
+                        </div>
+                        <div id="scoreDetails" class="score-details"></div>
+                    </div>
+                    <div id="reviewSection" class="review-section"></div>
+                    <div class="result-actions">
+                        <button id="retakeBtn" class="btn-primary">🔄 Retake Quiz</button>
+                        <button id="homeBtn" class="btn-secondary">🏠 Back to Home</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div id="modalOverlay" class="modal-overlay">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3>Create Mock Test</h3>
+                    <button id="closeModal" class="btn-icon">✕</button>
+                </div>
+                <form id="mockForm" class="modal-body">
+                    <div class="form-group">
+                        <label for="mockTitle">Quiz Title</label>
+                        <input type="text" id="mockTitle" required placeholder="e.g. Physics Chapter 5">
+                    </div>
+                    <div class="form-group">
+                        <label for="sheetInput">Google Sheet URL or Sheet ID</label>
+                        <input type="text" id="sheetInput" required placeholder="Paste URL or Sheet ID here">
+                        <small class="form-hint">Sheet format: Question | Option A | Option B | Option C | Option D | Answer (A/B/C/D) | Category</small>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="sheetName">Sheet Name</label>
+                            <input type="text" id="sheetName" placeholder="Sheet1 (optional)">
+                        </div>
+                        <div class="form-group">
+                            <label for="numQuestions">Questions</label>
+                            <input type="number" id="numQuestions" min="1" max="200" value="10">
+                        </div>
+                        <div class="form-group">
+                            <label for="timeLimit">Minutes</label>
+                            <input type="number" id="timeLimit" min="1" max="300" value="15">
+                        </div>
+                    </div>
+                    <div id="loadStatus" class="load-status"></div>
+                    <button type="submit" id="createBtn" class="btn-primary btn-full">
+                        Create & Load Quiz
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div id="confirmOverlay" class="modal-overlay">
+            <div class="modal modal-sm">
+                <div class="modal-header">
+                    <h3 id="confirmTitle">Confirm</h3>
+                </div>
+                <p id="confirmMsg" class="confirm-msg"></p>
+                <div class="confirm-actions">
+                    <button id="confirmNo" class="btn-secondary">Cancel</button>
+                    <button id="confirmYes" class="btn-primary">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
