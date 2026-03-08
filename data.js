@@ -9675,6 +9675,2423 @@ var examDatabase = [
         CorrectOptionValue: null
       }
     ]
+  },
+  {
+    ExamID: "AP_ECET_2024_CSE",
+    ExamName: "AP ECET",
+    ExamIcon: "📘",
+    DepartmentID: "CSE",
+    DepartmentName: "Computer Science and Engineering",
+    DepartmentIcon: "⚙️",
+    DepartmentDescription: "Mathematics, Physics, Chemistry, Computer Science and Engineering",
+    ExamYear: 2024,
+    ExamYearLabel: "2024 Past Paper",
+    ExamYearIcon: "📄",
+    ExamYearBadge: "Past Paper",
+    ExamConfiguration: {
+      ExamTitle: "AP ECET Computer Science and Engineering 2024 Paper",
+      DurationInMinutes: 180
+    },
+    Questions: [
+      {
+        QuestionNumber: 1,
+        SubjectName: "Mathematics",
+        QuestionText: "If each element of a row or column of a determinant is multiplied by a constant K then the value of the determinant is",
+        OptionsValues: [
+          "Added by k",
+          "Multiplied by k",
+          "Subtracted by k",
+          "Divided by k."
+        ],
+        CorrectOptionValue: "Multiplied by k"
+      },
+      {
+        QuestionNumber: 2,
+        SubjectName: "Mathematics",
+        QuestionText: "If $A=[\\begin{matrix}1&2&3\\\\ -2&1&4\\end{matrix}]$ and $B=[\\begin{matrix}2&3&1\\\\ 5&4&2\\\\ 1&5&3\\end{matrix}]$ then AB=",
+        OptionsValues: [
+          "[15 26 4]",
+          "$[\\begin{matrix}15&26&14\\\\ 5&18&12\\end{matrix}]$",
+          "$[\\begin{matrix}15&5\\\\ 26&18\\\\ 14&12\\end{matrix}]$",
+          "BA"
+        ],
+        CorrectOptionValue: "$[\\begin{matrix}15&26&14\\\\ 5&18&12\\end{matrix}]$"
+      },
+      {
+        QuestionNumber: 3,
+        SubjectName: "Mathematics",
+        QuestionText: "The elements on the main diagonal of a skew symmetric matrix are all",
+        OptionsValues: [
+          "zeros",
+          "One's",
+          "Unequal",
+          ">1"
+        ],
+        CorrectOptionValue: "zeros"
+      },
+      {
+        QuestionNumber: 4,
+        SubjectName: "Mathematics",
+        QuestionText: "If w is one of the imaginary cube roots of unity, find the value of the determinant $|\\begin{matrix}1&\\omega&\\omega^{2}\\\\ \\omega&\\omega^{2}&1\\\\ \\omega^{2}&1&\\omega\\end{matrix}|=$",
+        OptionsValues: [
+          "zero",
+          "one",
+          "42",
+          "subtraction"
+        ],
+        CorrectOptionValue: "zero"
+      },
+      {
+        QuestionNumber: 5,
+        SubjectName: "Mathematics",
+        QuestionText: "Every square matrix can be written as the sum of",
+        OptionsValues: [
+          "Diagonal matrix & square matrix",
+          "Two rectangular marices",
+          "Square ad non-square matrices",
+          "Symmetric and skew symmetric matrix"
+        ],
+        CorrectOptionValue: "Symmetric and skew symmetric matrix"
+      },
+      {
+        QuestionNumber: 6,
+        SubjectName: "Mathematics",
+        QuestionText: "An improper fraction can be reduced to proper fraction by",
+        OptionsValues: [
+          "Multiplication",
+          "Division",
+          "Addition",
+          "subtraction"
+        ],
+        CorrectOptionValue: "Division"
+      },
+      {
+        QuestionNumber: 7,
+        SubjectName: "Mathematics",
+        QuestionText: "$\\frac{x}{(x+2)(x-3)}=$",
+        OptionsValues: [
+          "$\\frac{2}{5(x+2)}+\\frac{3}{5(x-2)}$",
+          "$\\frac{2}{5(x+2)}-\\frac{3}{5(x-3)}$",
+          "$\\frac{2}{5(x+2)}+\\frac{3}{5(x-3)}$",
+          "$\\frac{2}{5(x-3)}+\\frac{3}{5(x+2)}$"
+        ],
+        CorrectOptionValue: "$\\frac{2}{5(x+2)}+\\frac{3}{5(x-3)}$"
+      },
+      {
+        QuestionNumber: 8,
+        SubjectName: "Mathematics",
+        QuestionText: "The value of $sin~210^{0}$",
+        OptionsValues: [
+          "$\\frac{1}{2}$",
+          "$-\\frac{1}{2}$",
+          "$\\frac{1}{\\sqrt{2}}$",
+          "$-\\frac{1}{\\sqrt{2}}$"
+        ],
+        CorrectOptionValue: "$-\\frac{1}{2}$"
+      },
+      {
+        QuestionNumber: 9,
+        SubjectName: "Mathematics",
+        QuestionText: "$cosn\\pi=$",
+        OptionsValues: [
+          "-1",
+          "-n",
+          "$(-1)^{n}$",
+          "$(n)^{-1}$"
+        ],
+        CorrectOptionValue: "$(-1)^{n}$"
+      },
+      {
+        QuestionNumber: 10,
+        SubjectName: "Mathematics",
+        QuestionText: "a≠0, sinx+siny = a, cosx+cosy $=b$ then $tan\\frac{x+y}{2}=$",
+        OptionsValues: [
+          "$\\frac{b}{a}$",
+          "$\\frac{a}{b}$",
+          "$\\frac{a+b}{2}$",
+          "$\\frac{a-b}{2}$"
+        ],
+        CorrectOptionValue: "$\\frac{a}{b}$"
+      },
+      {
+        QuestionNumber: 11,
+        SubjectName: "Mathematics",
+        QuestionText: "$f(X)$ is a periodic function of period k then the period of periodic function $f(ax+b)$ is",
+        OptionsValues: [
+          "$\\frac{k}{a},a\\ne0$",
+          "$\\frac{ak}{|b|},b\\ne0$",
+          "$\\frac{k+b}{a},a\\ne0$",
+          "$\\frac{k}{|a|},a\\ne0$"
+        ],
+        CorrectOptionValue: "$\\frac{k}{|a|},a\\ne0$"
+      },
+      {
+        QuestionNumber: 12,
+        SubjectName: "Mathematics",
+        QuestionText: "$If~7~sin^{2}\\theta+3~cos^{2}\\theta=4,$ then $\\theta=$",
+        OptionsValues: [
+          "$\\pm\\frac{\\pi}{3}$",
+          "$\\pm\\frac{\\pi}{6}$",
+          "$\\pm\\frac{\\pi}{4}$",
+          "$\\pm\\frac{\\pi}{2}$"
+        ],
+        CorrectOptionValue: "$\\pm\\frac{\\pi}{6}$"
+      },
+      {
+        QuestionNumber: 13,
+        SubjectName: "Mathematics",
+        QuestionText: "The range of $cos^{-1}x$ is",
+        OptionsValues: [
+          "[0,π]",
+          "[-π.π]",
+          "[0,-π]",
+          "$(0,\\pi)$"
+        ],
+        CorrectOptionValue: "[0,π]"
+      },
+      {
+        QuestionNumber: 14,
+        SubjectName: "Mathematics",
+        QuestionText: "Assume $x>0,y>0$. Then which one of the following is true ?",
+        OptionsValues: [
+          "$If~xy<1$ then $tan^{-1}x+tan^{-1}y=tan^{-1}(\\frac{x+y}{1-xy})$",
+          "$If~xy>1$ then $tan^{-1}x+tan^{-1}y=tan^{-1}(\\frac{x+y}{1-xy})$",
+          "If $xy=1$ then $tan^{-1}x+tan^{-1}y=tan^{-1}(\\frac{x+y}{1-xy})$",
+          "$If~xy=1~then~tan^{-1}x-tan^{-1}y=tan^{-1}(\\frac{x+y}{1-xy})$"
+        ],
+        CorrectOptionValue: "$If~xy<1$ then $tan^{-1}x+tan^{-1}y=tan^{-1}(\\frac{x+y}{1-xy})$"
+      },
+      {
+        QuestionNumber: 15,
+        SubjectName: "Mathematics",
+        QuestionText: "In $\\Delta ABC$ (a+b+c)(b+c-a)=3bc, then angle $A=$",
+        OptionsValues: [
+          "$90^{0}$",
+          "$120^{0}$",
+          "$60^{0}$",
+          "$45^{\\circ}$"
+        ],
+        CorrectOptionValue: "$60^{0}$"
+      },
+      {
+        QuestionNumber: 16,
+        SubjectName: "Mathematics",
+        QuestionText: "In AABC. $tan\\frac{A}{2}=\\frac{5}{6}$ $tan\\frac{c}{2}=\\frac{2}{5}$ then a b,c are in",
+        OptionsValues: [
+          "Geometric progression",
+          "Arithmetic progression",
+          "Harmonic progression",
+          "Arithmetico - Geometric progression"
+        ],
+        CorrectOptionValue: "Arithmetic progression"
+      },
+      {
+        QuestionNumber: 17,
+        SubjectName: "Mathematics",
+        QuestionText: "$In~any~\\Delta ABC,tan\\frac{B-C}{2}=$",
+        OptionsValues: [
+          "$b\\pm c~cot\\frac{A}{2}$",
+          "$\\frac{b-c}{b+c}cot\\frac{A}{2}$",
+          "(b - c) tan",
+          "$tan\\frac{c}{2}$"
+        ],
+        CorrectOptionValue: "$\\frac{b-c}{b+c}cot\\frac{A}{2}$"
+      },
+      {
+        QuestionNumber: 18,
+        SubjectName: "Mathematics",
+        QuestionText: "Conjugate of $\\frac{1-i}{1+i}$ 15",
+        OptionsValues: [
+          "-31",
+          "-i",
+          "i",
+          "61"
+        ],
+        CorrectOptionValue: "i"
+      },
+      {
+        QuestionNumber: 19,
+        SubjectName: "Mathematics",
+        QuestionText: "Standard form of $(-1+2i)+(\\frac{1}{2}-i)$ is",
+        OptionsValues: [
+          "$\\frac{1}{2}-i$",
+          "$-\\frac{1}{2}+i$",
+          "1",
+          "2i"
+        ],
+        CorrectOptionValue: "$-\\frac{1}{2}+i$"
+      },
+      {
+        QuestionNumber: 20,
+        SubjectName: "Mathematics",
+        QuestionText: "If the circle is $x^{2}+y^{2}+6x-8y+c=0$ has radius 6 units, Then value of c is",
+        OptionsValues: [
+          "-11",
+          "11",
+          "25",
+          "6"
+        ],
+        CorrectOptionValue: "-11"
+      },
+      {
+        QuestionNumber: 21,
+        SubjectName: "Mathematics",
+        QuestionText: "The equation of the parabola whose focus is (8.0) and the vertex is (0.0)is",
+        OptionsValues: [
+          "$y^{2}=12x$",
+          "$y^{2}=x$",
+          "$y^{2}=32x$",
+          "$y^{2}=16x$"
+        ],
+        CorrectOptionValue: "$y^{2}=32x$"
+      },
+      {
+        QuestionNumber: 22,
+        SubjectName: "Mathematics",
+        QuestionText: "The eccentricity of the ellipse $x^{2}+2y^{2}=3$ is",
+        OptionsValues: [
+          "$e=\\frac{3}{\\sqrt{2}}$",
+          "$e=-\\frac{1}{\\sqrt{3}}$",
+          "$e=-\\frac{1}{\\sqrt{2}}$",
+          "$e=\\frac{1}{\\sqrt{2}}$"
+        ],
+        CorrectOptionValue: "$e=\\frac{1}{\\sqrt{2}}$"
+      },
+      {
+        QuestionNumber: 23,
+        SubjectName: "Mathematics",
+        QuestionText: "In the Ellipse $\\frac{x^{2}}{a^{2}}+\\frac{y^{2}}{b^{2}}=1, a>b$ the length of the latus rectum is",
+        OptionsValues: [
+          "$\\frac{2a^{2}}{b}$",
+          "$\\frac{2b^{2}}{a}$",
+          "$\\frac{2a^{2}}{b^{2}}$",
+          "2ab"
+        ],
+        CorrectOptionValue: "$\\frac{2b^{2}}{a}$"
+      },
+      {
+        QuestionNumber: 24,
+        SubjectName: "Mathematics",
+        QuestionText: "The equation of the Hyperbola with foci (±2,0) and eccentricity $3/2$ is",
+        OptionsValues: [
+          "$\\frac{9x^{2}}{16^{2}}+\\frac{9y^{2}}{10^{2}}=1$",
+          "$\\frac{x^{2}}{16/9}-\\frac{y^{2}}{20/9}=1$",
+          "$\\frac{x^{2}}{16^{2}}-\\frac{y^{2}}{20^{2}}=1$",
+          "$\\frac{x^{2}}{2^{2}}-\\frac{y^{2}}{20^{2}}=1$"
+        ],
+        CorrectOptionValue: "$\\frac{x^{2}}{16/9}-\\frac{y^{2}}{20/9}=1$"
+      },
+      {
+        QuestionNumber: 25,
+        SubjectName: "Mathematics",
+        QuestionText: "If the coordinates at one end of a diameter of the circle $x^{2}+y^{2}-8x-4y+c=0$ are (-3, 2) then the coordinates at the other end are",
+        OptionsValues: [
+          "(5, 11)",
+          "(6, 2)",
+          "(2,11)",
+          "(11, 2)"
+        ],
+        CorrectOptionValue: "(11, 2)"
+      },
+      {
+        QuestionNumber: 26,
+        SubjectName: "Mathematics",
+        QuestionText: "If $a>0,$ then $lim_{x\\rightarrow0}\\frac{a^{x}-1}{x}=$",
+        OptionsValues: [
+          "logx",
+          "1",
+          "loga",
+          "log"
+        ],
+        CorrectOptionValue: "loga"
+      },
+      {
+        QuestionNumber: 27,
+        SubjectName: "Mathematics",
+        QuestionText: "Differentiation of $sin~x^{n}$ with respect to x.",
+        OptionsValues: [
+          "$nx^{n-1}cos~x^{n}$",
+          "$x^{n-1}cos~x^{n}$",
+          "$cos~x^{n}$",
+          "ncosx\""
+        ],
+        CorrectOptionValue: "$nx^{n-1}cos~x^{n}$"
+      },
+      {
+        QuestionNumber: 28,
+        SubjectName: "Mathematics",
+        QuestionText: "$\\frac{d}{dx}(sin^{-1}\\frac{x}{a})=$",
+        OptionsValues: [
+          "$\\frac{1}{\\sqrt{a^{2}-x^{2}}}$",
+          "$\\frac{1}{\\sqrt{a^{2}+x^{2}}}$",
+          "$\\frac{1}{\\sqrt{x^{2}-a^{2}}}$",
+          "$\\frac{-1}{\\sqrt{a^{2}-x^{2}}}$"
+        ],
+        CorrectOptionValue: "$\\frac{1}{\\sqrt{a^{2}-x^{2}}}$"
+      },
+      {
+        QuestionNumber: 29,
+        SubjectName: "Mathematics",
+        QuestionText: "$\\frac{d}{dx}(e^{3log~x})=$",
+        OptionsValues: [
+          "3x",
+          "3log x",
+          "log 3",
+          "$3x^{2}$"
+        ],
+        CorrectOptionValue: "$3x^{2}$"
+      },
+      {
+        QuestionNumber: 30,
+        SubjectName: "Mathematics",
+        QuestionText: "$\\frac{d}{dx}[log|x|]=$",
+        OptionsValues: [
+          "$\\frac{1}{|x|}$",
+          "$\\frac{1}{x}$",
+          "x",
+          "X"
+        ],
+        CorrectOptionValue: "$\\frac{1}{x}$"
+      },
+      {
+        QuestionNumber: 31,
+        SubjectName: "Mathematics",
+        QuestionText: "$y=cos~x$ then $\\frac{d^{2}y}{dx^{2}}$ 1S",
+        OptionsValues: [
+          "COS X",
+          "sin x",
+          "-COS X",
+          "-sin x"
+        ],
+        CorrectOptionValue: "-COS X"
+      },
+      {
+        QuestionNumber: 32,
+        SubjectName: "Mathematics",
+        QuestionText: "The angle between the curves $x^{2}+4y=0$ xy = 2 is",
+        OptionsValues: [
+          "$Tan^{-1}3$",
+          "$cot^{-1}1$",
+          "$Tan^{-1}4$",
+          "$cot^{-1};$"
+        ],
+        CorrectOptionValue: "$Tan^{-1}3$"
+      },
+      {
+        QuestionNumber: 33,
+        SubjectName: "Mathematics",
+        QuestionText: "The slope of the tangent to the curve $y=\\frac{x-1}{x+1}$ at (0,1)",
+        OptionsValues: [
+          "4",
+          "-2",
+          "5",
+          "2"
+        ],
+        CorrectOptionValue: "2"
+      },
+      {
+        QuestionNumber: 34,
+        SubjectName: "Mathematics",
+        QuestionText: "$Ifz=x^{2}+y^{2}$ then $x\\frac{\\partial z}{\\partial y}-y\\frac{\\partial z}{\\partial x}=$",
+        OptionsValues: [
+          "2y-2x",
+          "2x+2y",
+          "0",
+          "4xy"
+        ],
+        CorrectOptionValue: "0"
+      },
+      {
+        QuestionNumber: 35,
+        SubjectName: "Mathematics",
+        QuestionText: "$z=\\frac{x^{3}+y^{3}}{x+y},$ is a homogeneous function of degree",
+        OptionsValues: [
+          "2",
+          "3",
+          "0",
+          "1"
+        ],
+        CorrectOptionValue: "2"
+      },
+      {
+        QuestionNumber: 36,
+        SubjectName: "Mathematics",
+        QuestionText: "$\\int(x^{2/3}+1)dx=$",
+        OptionsValues: [
+          "$\\frac{3}{5}x^{\\frac{5}{3}}+x+c$",
+          "$\\frac{5}{3}x^{\\frac{5}{3}}+x+c$",
+          "$\\frac{3}{5}x^{\\frac{5}{3}}+c$",
+          "$\\frac{3}{5}x^{\\frac{3}{5}}+x+c$"
+        ],
+        CorrectOptionValue: "$\\frac{3}{5}x^{\\frac{5}{3}}+x+c$"
+      },
+      {
+        QuestionNumber: 37,
+        SubjectName: "Mathematics",
+        QuestionText: "$\\int\\frac{dx}{x^{2}-16}=$",
+        OptionsValues: [
+          "$\\frac{1}{16}log|\\frac{x-8}{x+4}|+c$",
+          "$\\frac{1}{4}log|\\frac{x-4}{x+4}|+c$",
+          "$\\frac{1}{8}log|\\frac{x-4}{x+4}|+c$",
+          "$\\frac{1}{16}log|\\frac{x-4}{x+4}|+c$"
+        ],
+        CorrectOptionValue: "$\\frac{1}{8}log|\\frac{x-4}{x+4}|+c$"
+      },
+      {
+        QuestionNumber: 38,
+        SubjectName: "Mathematics",
+        QuestionText: "$\\int cos\\frac{x}{2}dx=$",
+        OptionsValues: [
+          "$2~cos\\frac{x}{2}+c$",
+          "$2~sin\\frac{x}{2}+c$",
+          "2 sin 2x + c",
+          "-2 sin-+ c"
+        ],
+        CorrectOptionValue: "$2~sin\\frac{x}{2}+c$"
+      },
+      {
+        QuestionNumber: 39,
+        SubjectName: "Mathematics",
+        QuestionText: "$\\int\\frac{sin(tan^{-1}x)dx}{1+x^{2}}=$",
+        OptionsValues: [
+          "$-cos~x+c$",
+          "$-cos(tan^{-1}x)+c$",
+          "-sin (tan-¹x) + c",
+          "(tan¯¹x) + c"
+        ],
+        CorrectOptionValue: "$-cos(tan^{-1}x)+c$"
+      },
+      {
+        QuestionNumber: 40,
+        SubjectName: "Mathematics",
+        QuestionText: "$\\int e^{x}cos~x~dx=$",
+        OptionsValues: [
+          "ex(cosx + sin x) + c",
+          "$\\frac{1}{2}e^{x}(cos~x-sin~x)+c$",
+          "$\\frac{1}{2}e^{x}sinx+c$",
+          "$\\frac{1}{2}(cos~x+sin~x)+c$"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 41,
+        SubjectName: "Mathematics",
+        QuestionText: "$If~f(x)$ is an even function, then $\\int_{-a}^{a}f(x)dx=$",
+        OptionsValues: [
+          "$-\\int_{-a}^{a}f(x)dx$",
+          "$2\\int_{-a}^{a}f(x)dx$",
+          "$2\\int_{0}^{a}f(x)dx$",
+          "$\\int_{0}^{a}f(x)dx$"
+        ],
+        CorrectOptionValue: "$2\\int_{0}^{a}f(x)dx$"
+      },
+      {
+        QuestionNumber: 42,
+        SubjectName: "Mathematics",
+        QuestionText: "The area of the region bounded by the curve $y=f(x),x-axis~and~the~lines$ x = a and x = b (ba) is given by",
+        OptionsValues: [
+          "$\\int_{b}^{a}ydx$",
+          "$-\\int_{a}^{b}ydx$",
+          "$\\int_{a}^{b}xdy$",
+          "$\\int_{a}^{b}ydx$"
+        ],
+        CorrectOptionValue: "$\\int_{a}^{b}ydx$"
+      },
+      {
+        QuestionNumber: 43,
+        SubjectName: "Mathematics",
+        QuestionText: "Find maxima (or) minima for the curve $y=2x^{4}-x^{2}$",
+        OptionsValues: [
+          "'y' is minimum at $x=\\pm\\frac{1}{2}$",
+          "'y' is maximum for $x=-\\frac{1}{4}$",
+          "'y' is maximum for $x=\\pm\\frac{1}{2}$",
+          "'y'is maximum for $x=+\\frac{1}{4}$"
+        ],
+        CorrectOptionValue: "'y' is minimum at $x=\\pm\\frac{1}{2}$"
+      },
+      {
+        QuestionNumber: 44,
+        SubjectName: "Mathematics",
+        QuestionText: "Order of the differential equation $[\\frac{d^{2}y}{dx^{2}}+(\\frac{dy}{dx})^{3}]^{6/5}=6yi$",
+        OptionsValues: [
+          "3",
+          "2",
+          "5",
+          "1"
+        ],
+        CorrectOptionValue: "2"
+      },
+      {
+        QuestionNumber: 45,
+        SubjectName: "Mathematics",
+        QuestionText: "The differential equation representing the family of curves y=mx where, mis arbitrary Constant is",
+        OptionsValues: [
+          "$\\frac{dy}{dx}-y=0$",
+          "$\\frac{dy}{dx}+y=0$",
+          "$x\\frac{dy}{dx}-y=0$",
+          "$xdx-ydy=y$"
+        ],
+        CorrectOptionValue: "$x\\frac{dy}{dx}-y=0$"
+      },
+      {
+        QuestionNumber: 46,
+        SubjectName: "Mathematics",
+        QuestionText: "The general solution of the differential equation $D\\frac{dy}{dx}=\\frac{1+y^{2}}{1+x^{2}}$ 1S",
+        OptionsValues: [
+          "$tan^{-1}y-tan^{-1}x=c$",
+          "$tan^{-1}y+tan^{-1}x=c$",
+          "$tan^{-1}y=c$",
+          "$tan^{-1}y/x=c$"
+        ],
+        CorrectOptionValue: "$tan^{-1}y-tan^{-1}x=c$"
+      },
+      {
+        QuestionNumber: 47,
+        SubjectName: "Mathematics",
+        QuestionText: "Which one of the statement is true?",
+        OptionsValues: [
+          "Order of differential equation is the order of the lowest order derivative occurring in the differential equation.",
+          "A function which satisfies the given differential equation is not its solution.",
+          "An equation involving derivatives of the dependent variable with respect to dependent variable is known as a differential equation.",
+          "Degree of a differential equation is defined if it is a polynomial equation in its Derivatives."
+        ],
+        CorrectOptionValue: "Degree of a differential equation is defined if it is a polynomial equation in its Derivatives."
+      },
+      {
+        QuestionNumber: 48,
+        SubjectName: "Mathematics",
+        QuestionText: "The Integrating factor of the differential equation is $x\\frac{dy}{dx}+2y=x^{2}(x\\ne0)$",
+        OptionsValues: [
+          "X",
+          "log x",
+          "xlogx",
+          "x2"
+        ],
+        CorrectOptionValue: "x2"
+      },
+      {
+        QuestionNumber: 49,
+        SubjectName: "Mathematics",
+        QuestionText: "The linear form of $x~log~x\\frac{dy}{dx}+y=2~log~x$ is",
+        OptionsValues: [
+          "$\\frac{dy}{dx}-\\frac{y}{xlog~x}=\\frac{1}{x}$",
+          "$\\frac{dy}{dx}+\\frac{y}{x~log~x}=\\frac{2}{x}$",
+          "$\\frac{dy}{dx}+\\frac{y}{xlog~x}=\\frac{1}{x}$",
+          "$\\frac{dy}{dx}+\\frac{y}{x~log~x}=1$"
+        ],
+        CorrectOptionValue: "$\\frac{dy}{dx}+\\frac{y}{x~log~x}=\\frac{2}{x}$"
+      },
+      {
+        QuestionNumber: 50,
+        SubjectName: "Mathematics",
+        QuestionText: "The particular integral of $\\frac{d^{2}y}{dx^{2}}-4y=e^{2x}$ is",
+        OptionsValues: [
+          "$\\frac{1}{4}e^{2x}$",
+          "$\\frac{1}{4x}e^{2x}$",
+          "$\\frac{1}{4}xe^{2x}$",
+          "$\\frac{1}{2}xe^{2x}$"
+        ],
+        CorrectOptionValue: "$\\frac{1}{4}xe^{2x}$"
+      },{
+        QuestionNumber: 51,
+        SubjectName: "Physics",
+        QuestionText: "$N~Kg^{-1}$ is the unit of",
+        OptionsValues: [
+          "Velocity",
+          "Acceleration",
+          "Force",
+          "Momentum"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 52,
+        SubjectName: "Physics",
+        QuestionText: "A system has basic dimensions as density 'D', velocity 'V' and area 'A'. The dimensional representation of force in this system is",
+        OptionsValues: [
+          "$V^{2}D$",
+          "$A~V~D^{2}$",
+          "$A^{2}VD$",
+          "$A^{0}V^{2}D$"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 53,
+        SubjectName: "Physics",
+        QuestionText: "If The magnitude of vectors A, B and C are 5, 4 and 3 units respectively and $A=B+ C$. then the angle between vectors A and C is",
+        OptionsValues: [
+          "$cos^{-1}(4/5)$",
+          "П",
+          "$cos^{-1}(3/5)$",
+          "$sin^{-1}(3/4)$"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 54,
+        SubjectName: "Physics",
+        QuestionText: "If the sum of two unit vectors is also a unit vector, then the magnitude of their difference is",
+        OptionsValues: [
+          "1",
+          "1/2",
+          "$1/\\sqrt{2}$",
+          "√3"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 55,
+        SubjectName: "Physics",
+        QuestionText: "A particle starting from rest moves in a straight line with uniform acceleration a. The average velocity of the particle in first 's' distance is",
+        OptionsValues: [
+          "as/2",
+          "$\\sqrt{\\frac{3as}{2}}$",
+          "$\\sqrt{2as}$",
+          "$\\sqrt{as}$"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 56,
+        SubjectName: "Physics",
+        QuestionText: "A projectile is thrown with speed u making angle  with the horizontal at $t=0,$ It just crosses two points of equal height at time $t=ls$ and $t=3s$ respectively. The maximum height attained by the projectile is (take $g=10~ms^{-2})$",
+        OptionsValues: [
+          "10m",
+          "20m",
+          "15m",
+          "22m"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 57,
+        SubjectName: "Physics",
+        QuestionText: "A body is falling from height 'H' takes time 'T' seconds to reach the ground. The time taken to cover the first half of height is",
+        OptionsValues: [
+          "$\\frac{T}{\\sqrt{2}}$",
+          "$\\sqrt{2}T$",
+          "$\\sqrt{3}T$",
+          "$\\frac{T}{\\sqrt{3}}$"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 58,
+        SubjectName: "Physics",
+        QuestionText: "A body sliding on ice with a velocity $8~ms^{-1}$ comes to rest after travelling 40 m. The coefficient of friction between the body and ice is $(g=10~ms^{-2})$",
+        OptionsValues: [
+          "0.02",
+          "0.05",
+          "0.08",
+          "0.2"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 59,
+        SubjectName: "Physics",
+        QuestionText: "If a body placed on a rough inclined plane of gradient 1 in 4. just begins to slide, then coefficient of friction between the plane and body is",
+        OptionsValues: [
+          "$\\frac{2}{\\sqrt{15}}$",
+          "$\\frac{1}{\\sqrt{2}}$",
+          "$\\frac{1}{\\sqrt{5}}$",
+          "$\\frac{1}{\\sqrt{15}}$"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 60,
+        SubjectName: "Physics",
+        QuestionText: "A cube of 10 N weight rests on a rough inclined plane of slope 3 in 5. If the coefficient of friction between plane and cube is 0.6. then minimum force required to start the cube moving up the plane is",
+        OptionsValues: [
+          "2N",
+          "6N",
+          "10.8N",
+          "4.5N"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 61,
+        SubjectName: "Physics",
+        QuestionText: "A pump can take out 7200 Kg of water per hour from a 100 m deep well. If the efficiency of the pump is 50% then power of the pump is $(g=10~ms^{-2})$",
+        OptionsValues: [
+          "2 KW",
+          "4 KW",
+          "7.2 KW",
+          "3.6 KW"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 62,
+        SubjectName: "Physics",
+        QuestionText: "When a force $F=i+2j+31$ acts on a body to move it from $r_{l}=i+j+k$ ktor $r2=j-j+2k.$ then the work done by the force is",
+        OptionsValues: [
+          "-3 J",
+          "-1 J",
+          "2J",
+          "3 J"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 63,
+        SubjectName: "Physics",
+        QuestionText: "The K.E. of a body moving with a speed of $10~m/s$ is 30 J. If its speed becomes $30 m/s$ then its K.E. will be",
+        OptionsValues: [
+          "10 J",
+          "90 J",
+          "180 J",
+          "270 J"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 64,
+        SubjectName: "Physics",
+        QuestionText: "The maximum speed of a particle executing SHM is 1 m/s and maximum acceleration is $1.57~m/s^{2}.$ Its time period is",
+        OptionsValues: [
+          "4 sec",
+          "1.57 sec",
+          "2 sec",
+          "$\\frac{1}{1.57}$"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 65,
+        SubjectName: "Physics",
+        QuestionText: "A girl is swinging on a swing in the sitting position. If the girl stands up, the time period of the string will",
+        OptionsValues: [
+          "Increase",
+          "Decrease",
+          "Remains same",
+          "Becomes erratic"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 66,
+        SubjectName: "Physics",
+        QuestionText: "A light spring supports 200 gm weight at its lower end it oscillates with a period of 1 sec. How much weight must be removed from the lower end to reduce the period to 0.5 sec?",
+        OptionsValues: [
+          "100 gm.",
+          "50 gm.",
+          "150 gm.",
+          "200 gm."
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 67,
+        SubjectName: "Physics",
+        QuestionText: "The velocity of sound in any medium depends upon",
+        OptionsValues: [
+          "Intensity and elasticity",
+          "Amplitude and density",
+          "elasticity and density",
+          "Amplitude and elasticity"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 68,
+        SubjectName: "Physics",
+        QuestionText: "The beat frequency produced by the vibrations of x1 = A sin (320nt) and $x2=A$ sin (326xt) is",
+        OptionsValues: [
+          "6",
+          "4",
+          "2",
+          "3"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 69,
+        SubjectName: "Physics",
+        QuestionText: "The Boyle's law is stated by $PV=C.$ C depends on",
+        OptionsValues: [
+          "Nature of gas",
+          "Atomic weight of gas",
+          "Temperature of gas",
+          "Quantity and temperature of gas"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 70,
+        SubjectName: "Physics",
+        QuestionText: "The equation of state for 5g of oxygen (O2) at pressure P and temperature T. when occupying a volume V. will be (R is universal gas constant)",
+        OptionsValues: [
+          "$PV=5RT$",
+          "$PV=\\frac{5}{2}RT$",
+          "$PV=\\frac{5}{16}RT$",
+          "$PV=\\frac{5}{32}RT$"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 71,
+        SubjectName: "Physics",
+        QuestionText: "The volume of a gas at constant pressure of $10^{3}N/m^{2}$ expands by $0.25m^{3}$. The work done in this process is",
+        OptionsValues: [
+          "25J",
+          "50J",
+          "250J",
+          "5J"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 72,
+        SubjectName: "Physics",
+        QuestionText: "For an adiabatic expansion of a perfect gas the value of $\\frac{\\Delta P}{P}$ is equal to",
+        OptionsValues: [
+          "$\\frac{\\Delta V}{V}$",
+          "$\\gamma\\frac{\\Delta v}{v}$",
+          "$-\\gamma\\frac{\\Delta v}{v}$",
+          "$\\gamma-\\frac{\\Delta v}{v}$"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 73,
+        SubjectName: "Physics",
+        QuestionText: "First law of Thermodynamics is a special case of",
+        OptionsValues: [
+          "Boyle's law",
+          "Charles law",
+          "Law of conservation of mass",
+          "Law of conservation of energy"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 74,
+        SubjectName: "Physics",
+        QuestionText: "If the critical angle for total internal reflection from a medium to vacuum is $30^{\\circ}$ the velocity of light in the medium is",
+        OptionsValues: [
+          "$3\\times10^{8}m/s$",
+          "$1.5\\times10^{8}m/s$",
+          "$\\sqrt{3}\\times10^{8}m/s$",
+          "$2\\times10^{8}m/s$"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 75,
+        SubjectName: "Physics",
+        QuestionText: "Light rays of wave length m incident on a metal surface of work function 1.24 eV. The stopping potential required to stop the emission of photoelectrons is",
+        OptionsValues: [
+          "1.6 eV",
+          "1.24 eV",
+          "3.2 eV",
+          "4.8 eV"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 76,
+        SubjectName: "Chemistry",
+        QuestionText: "According to Bohr's theory of hydrogen atom, the angular momentum of electron in fourth orbit of H-atom is equal to",
+        OptionsValues: [
+          "$\\frac{h}{2\\pi}$",
+          "$\\frac{2h}{\\pi}$",
+          "$\\frac{3h}{2\\pi}$",
+          "$\\frac{4h}{\\pi}$"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 77,
+        SubjectName: "Chemistry",
+        QuestionText: "The quantum number which describes the shape of an atomic orbital is",
+        OptionsValues: [
+          "Azimuthal Quantum Number",
+          "Principal Quantum Number",
+          "Spin Quantum Number",
+          "Magnetic Quantum Number"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 78,
+        SubjectName: "Chemistry",
+        QuestionText: "Identify the element in which the ratio of s-electrons to p-electrons is 3:5",
+        OptionsValues: [
+          "P",
+          "Al",
+          "S",
+          "K"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 79,
+        SubjectName: "Chemistry",
+        QuestionText: "The pair of molecules in which the central atom has octet of electrons is",
+        OptionsValues: [
+          "$BeCl_{2}$ $BF_{3}$",
+          "H2O, $BeCl_{2}$",
+          "H2O, $NH_{3}$",
+          "$NH_{3}$ $BF_{3}$"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 80,
+        SubjectName: "Chemistry",
+        QuestionText: "The electronic configuration of an element M is [Ne]3S and that of element X is [He]2S22P5. The type of bond present between M and X is",
+        OptionsValues: [
+          "Covalent Bond",
+          "Electrovalent Bond",
+          "Co-ordinate Covalent Bond",
+          "Hydrogen Bond"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 81,
+        SubjectName: "Chemistry",
+        QuestionText: "The absolute weight of one molecule of water (in g) is $(N_{A}=6\\times10^{23}mol^{-1})$",
+        OptionsValues: [
+          "$1.5\\times10^{-23}$",
+          "$3.0\\times10^{-23}$",
+          "$4.5\\times10^{-23}$",
+          "$2.0\\times10^{-23}$"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 82,
+        SubjectName: "Chemistry",
+        QuestionText: "The weight of sodium sulphate (molar mass $142~g~mol^{-1})$ required to prepare 500 ml of 0.03 M solution is",
+        OptionsValues: [
+          "2.13 g",
+          "4.26 g",
+          "3.195 g",
+          "1.065 g"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 83,
+        SubjectName: "Chemistry",
+        QuestionText: "The number of H ions present in 100 ml of 0.05 M H2SO4 solution is $(N_{A}=6\\times10^{23}mol^{-1})$",
+        OptionsValues: [
+          "$6.0\\times10^{24}$",
+          "$6.0\\times10^{22}$",
+          "$6.0\\times10^{21}$",
+          "$3.0\\times10^{23}$"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 84,
+        SubjectName: "Chemistry",
+        QuestionText: "The conjugate acid and conjugate base of $HCO_{3}^{-}$ are respectively",
+        OptionsValues: [
+          "$CO_{3}^{2-}$, $HCO_{3}^{-}$",
+          "$CO_{3}^{2-}$, $H_{2}CO_{3}$",
+          "$H_{2}CO_{3}$, $CO_{3}^{2-}$",
+          "HCO3, H2CO3"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 85,
+        SubjectName: "Chemistry",
+        QuestionText: "The pH of 0.005 M $H_{2}SO_{4}$ solution will be;",
+        OptionsValues: [
+          "5",
+          "2",
+          "3",
+          "1"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 86,
+        SubjectName: "Chemistry",
+        QuestionText: "In an electrochemical cell, the electrons flow from",
+        OptionsValues: [
+          "Cathode to Anode",
+          "Anode to Cathode",
+          "Anode to Solution",
+          "Solution to Cathode"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 87,
+        SubjectName: "Chemistry",
+        QuestionText: "How many faradays are required to reduce 1 mole of $MnO_{4}^{-}$ ions to $Mn^{2+}$ ions?",
+        OptionsValues: [
+          "5",
+          "4",
+          "2",
+          "3"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 88,
+        SubjectName: "Chemistry",
+        QuestionText: "At 298 K, the emf of the cell, $M|M^{2+}(1M)||Cu^{2+}(1M)|Cu~is^{4}x^{7}V.If~E_{Cu^{2+|Cu}^{0}=+0.34V$ then $E_{M^{2+|M}}^{0}(in~V)is$",
+        OptionsValues: [
+          "$(x-0.34)$",
+          "$(0.34-x)$",
+          "$(0.34+x)$",
+          "$\\frac{0.34}{x}$"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 89,
+        SubjectName: "Chemistry",
+        QuestionText: "Identify the strongest reducing agent from the following:",
+        OptionsValues: [
+          "$E_{K^{+}|K}^{0}=-2.93~v$",
+          "$E_{Al^{3+}|Al}^{0}=-1.66\\gamma$",
+          "$E_{Zn^{2+}|Zn}=-0.76~v$",
+          "$E_{Ag^{+}|Ag}^{0}=+0.34~v$"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 90,
+        SubjectName: "Chemistry",
+        QuestionText: "The formula of Zeolite can be represented as $Na_{2}Z$ The metal atom present in Z is",
+        OptionsValues: [
+          "Zn",
+          "Ca",
+          "Mg",
+          "Al"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 91,
+        SubjectName: "Chemistry",
+        QuestionText: "Permanent hardness of water cannot be removed by",
+        OptionsValues: [
+          "Boiling the hard water",
+          "Treatment with washing soda",
+          "Passing through Zeolite",
+          "Passing through ion exchange resins"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 92,
+        SubjectName: "Chemistry",
+        QuestionText: "Which of the following salts causes maximum hardness to water sample, when they are in equal amounts?",
+        OptionsValues: [
+          "$MgSO_{4}$ (Molecular Weight $=120u)$",
+          "$MgCl_{2}$ (Molecular Weight $=95u$)",
+          "$CaCl_{2}$ (Molecular Weight $=111u)$",
+          "$Ca(HCO_{3})_{2}$ (Molecular Weight $=162u$)"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 93,
+        SubjectName: "Chemistry",
+        QuestionText: "Which of the following statements is not correct about stress cells?",
+        OptionsValues: [
+          "They are formed between different parts of the same metal",
+          "Stressed part of the metal acts as cathode",
+          "Stressed part of the metal acts as anode",
+          "Anodic part undergoes corrosion"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 94,
+        SubjectName: "Chemistry",
+        QuestionText: "Tarnishing of silver is due to the formation of",
+        OptionsValues: [
+          "AgCl",
+          "$Ag_{2}CO_{3}$",
+          "Ag2O",
+          "Ag2 S"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 95,
+        SubjectName: "Chemistry",
+        QuestionText: "Which of the following is not a natural polymer?",
+        OptionsValues: [
+          "Wool",
+          "Cellulose",
+          "Strach",
+          "Rayon"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 96,
+        SubjectName: "Chemistry",
+        QuestionText: "Neoprene is an example of",
+        OptionsValues: [
+          "Elastomer",
+          "Thermoplastic Polymer",
+          "Thermosetting Polymer",
+          "Co-Polymer"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 97,
+        SubjectName: "Chemistry",
+        QuestionText: "The element that is added to raw rubber vulcanization is",
+        OptionsValues: [
+          "S",
+          "Se",
+          "C",
+          "B"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 98,
+        SubjectName: "Chemistry",
+        QuestionText: "The major components of water gas are",
+        OptionsValues: [
+          "$H_{2}$ CO",
+          "$H_{2}$ $CO_{2}$",
+          "CO, $N_{2}$",
+          "$CO_{2},$ $N_{2}$"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 99,
+        SubjectName: "Chemistry",
+        QuestionText: "Which of the following is not a greenhouse gas?",
+        OptionsValues: [
+          "$O_{3}$",
+          "$CO_{2}$",
+          "$CH_{4}$",
+          "$N_{2}$"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 100,
+        SubjectName: "Chemistry",
+        QuestionText: "The acid that is believed to be mainly responsible for the damage of Taj mahal is",
+        OptionsValues: [
+          "$H_{2}SO_{4}$",
+          "HF",
+          "H3PO4",
+          "HC1"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 101,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "The table containing present state of output, next state of the output and the inputs is called",
+        OptionsValues: [
+          "Truth table",
+          "State table",
+          "Excitation table",
+          "Transition table"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 102,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "A sequential circuit with 10 states will have",
+        OptionsValues: [
+          "0 Flip-flops",
+          "10 Flip-flops",
+          "4 Flip-flops",
+          "5 Flip-flops"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 103,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "A binary number can be multiplied by 2 or divided by 2 with help of",
+        OptionsValues: [
+          "AND gate",
+          "sequential circuit",
+          "shift register",
+          "any combinational circuit"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 104,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "A five bit binary counter uses flip flops with propagation delay time of 10 ns each. The maximum possible time required for change of state will be",
+        OptionsValues: [
+          "10 ns",
+          "0.5ns",
+          "2 ns",
+          "50 ns"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 105,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "The Boolean expression (A+C) (AB'+AC) (A'C'+B') can be simplified to",
+        OptionsValues: [
+          "AB'",
+          "$AB+A^{\\prime}C$",
+          "$AB+BC$",
+          "AB+BC"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 106,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "The 2's compliment representation of the decimal value -15 is",
+        OptionsValues: [
+          "01111",
+          "11111",
+          "11110",
+          "10001"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 107,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Let * be defined as $x^{*}y=x^{\\prime}+y$ let $z=x^{*}y$. Then the value of $z^{*}X$ is",
+        OptionsValues: [
+          "x+y",
+          "x",
+          "0",
+          "1"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 108,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "SR latch is made by cross coupling two NAND gates. if S=R=0. then it will result in",
+        OptionsValues: [
+          "Q=0. $Q^{t}=1$",
+          "Q=1. Q=0",
+          "Q=1 Q=1",
+          "indeterminate state"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 109,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "The attributes of good software among the following\n(a)Development (b) Functionality (c) Maintainability (d) Correctness",
+        OptionsValues: [
+          "a. b. c only",
+          "b, c d only",
+          "a, b d only",
+          "a. c, d only"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 110,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "What does SDLC stands for?",
+        OptionsValues: [
+          "System Design Life Cycle",
+          "Software Design Life Cycle",
+          "Software Development Life Cycle",
+          "System Development Life cycle"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 111,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "___ is a software development life cycle model that is chosen if the development team has less experience on similar projects.",
+        OptionsValues: [
+          "Iterative Enhancement Model",
+          "RAD",
+          "Spiral",
+          "Waterfall"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 112,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which one of the following is not a software process quality?",
+        OptionsValues: [
+          "Visibility",
+          "Timeliness",
+          "Productivity",
+          "Portability"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 113,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which of the following document contains the user system requirements?",
+        OptionsValues: [
+          "SRD",
+          "DDD",
+          "SDD",
+          "SRS"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 114,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which of the following testing is also known as white-box testing?",
+        OptionsValues: [
+          "structural testing",
+          "Error guessing technique",
+          "Design based testing",
+          "Integration testing"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 115,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Cyclomatic complexity is",
+        OptionsValues: [
+          "White-box testing",
+          "Black box testing",
+          "Grey box testing",
+          "Unit Testing"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 116,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "The spiral model was originally proposed by",
+        OptionsValues: [
+          "Barry Boehm",
+          "Pressman",
+          "Royce",
+          "Jalote"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 117,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "In computers, subtraction is generally carried out by",
+        OptionsValues: [
+          "9's complement",
+          "10's complement",
+          "1's complement",
+          "2's complement"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 118,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Computers use addressing mode techniques for\n(a) giving programming versatility to the user by providing facilities as pointers to memory counters for loop control\n(b) to reduce no. of bits in the field of instruction\n(c) specifying rules for modifying or interpreting address field of the instruction",
+        OptionsValues: [
+          "a only",
+          "a and b only",
+          "a and c only",
+          "a. b and c"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 119,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Cache memory acts between",
+        OptionsValues: [
+          "CPU and RAM",
+          "RAM and ROM",
+          "CPU and Hard Disk",
+          "RAM and Hard Disk"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 120,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "An n-bit microprocessor has",
+        OptionsValues: [
+          "n-bit program counter",
+          "n-bit address register",
+          "n-bit ALU",
+          "n-bit instruction register"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 121,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "In 8086 the over flow flag is set when",
+        OptionsValues: [
+          "The sum is more than 16 bit",
+          "Signed numbers go out of their range after an arithmetic operation.",
+          "Carry & Sign flag are set.",
+          "Zero flag is set."
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 122,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "The part of the computer system that supervises the flow of information between Auxiliary Memory and Main Memory is called",
+        OptionsValues: [
+          "Processor Management System",
+          "Data Management System",
+          "Address Management System",
+          "Memory Management System"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 123,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Memory unit accessed by content is called",
+        OptionsValues: [
+          "Read only memory",
+          "Programmable Memory",
+          "Virtual Memory",
+          "Associative Memory"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 124,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "A microprocessor retrieves instructions from",
+        OptionsValues: [
+          "Control memory",
+          "Cache memory",
+          "Main memory",
+          "Virtual memory"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 125,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "The addressing mode used in an instruction of the form ADD X. Y is",
+        OptionsValues: [
+          "Immediate",
+          "indirect",
+          "Direct",
+          "Index"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 126,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which is used to store critical pieces of data during subroutines and interrupts ?",
+        OptionsValues: [
+          "Stack",
+          "Queue",
+          "Accumulator",
+          "Data register"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 127,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "The size of each segment in 8086 is:",
+        OptionsValues: [
+          "64 KB",
+          "24 KB",
+          "50 KB",
+          "16 KB"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 128,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "A block sequence consisting of a number of Memory words is transferred continuously while a DMA controller is master of Memory Bus. This is",
+        OptionsValues: [
+          "Polling",
+          "Daisy Chaining",
+          "Burst transfer",
+          "Cycle Steal in"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 129,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which of the following is not derived data type in c?",
+        OptionsValues: [
+          "structure",
+          "Pointer",
+          "Enumeration",
+          "Array"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 130,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "The declaration shown below refers to\nstruct list\n{\nint info:\n};\nstruct list *prev, *next;",
+        OptionsValues: [
+          "Doubly linked list",
+          "Circular linked list with head",
+          "Single linked list",
+          "Circular queue"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 131,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "The total number of elements in the array A [3][4][2] is",
+        OptionsValues: [
+          "9",
+          "24",
+          "12",
+          "36"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 132,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "To construct a unique binary search tree, which tree traversals are required ?",
+        OptionsValues: [
+          "only post order",
+          "Postorder and Inorder",
+          "Preorder and Post order",
+          "only preorder"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 133,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "What is the infix expression for the following prefix expression?\n-AAB+CD",
+        OptionsValues: [
+          "$(A^{\\wedge}B)-(C+D)$",
+          "$(A\\cap B)+(C-D)$",
+          "$(A-B)^{\\wedge}(C+D)$",
+          "$(A+B)^{\\wedge}(C-D)$"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 134,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "The number of swappings needed to sort the numbers (7. 20. 6. 9. 30. 18. 4. 12) into ascending order using Bubble sort is",
+        OptionsValues: [
+          "14",
+          "12",
+          "13",
+          "11"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 135,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "To implement recursive technique for Quick Sort method, which basic data structure is required?",
+        OptionsValues: [
+          "Queue",
+          "Tree",
+          "Stack",
+          "Linked List"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 136,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "What will be output of following C code?\n#include<stdio.h>\n#include<string.h>\nvoid main()\n{\nint register a;\nscanf(\"%d\",&a):\nprintf(\"%d\" a):\ngetch():\n}",
+        OptionsValues: [
+          "25",
+          "Address",
+          "0",
+          "Compilation error"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 137,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which of the following sorting technique is slowest?",
+        OptionsValues: [
+          "Heap sort",
+          "Merge sort",
+          "Bubble Sort",
+          "Shell Sort"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 138,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which of the following sorting algorithms is best if a list is already sorted?",
+        OptionsValues: [
+          "Heap sort",
+          "Insertion sort",
+          "Quick sort",
+          "Selection sort"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 139,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Error detection at data link level is achieved by",
+        OptionsValues: [
+          "Bit stuffing",
+          "Cyclic redundancy codes",
+          "Manchester encoding",
+          "Equalization"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 140,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Start and stop bits are used in serial communication for",
+        OptionsValues: [
+          "Error detection",
+          "Error correction",
+          "Synchronization",
+          "Slowing down the communication"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 141,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "A method of communication in which transmission occurs in both the directions. but only one direction at a time is called",
+        OptionsValues: [
+          "four wires circuit",
+          "half duplex",
+          "simplex.",
+          "full duplex"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 142,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "A device that can covert digital signals to analog signals is",
+        OptionsValues: [
+          "Decoder",
+          "Modem",
+          "Encoder",
+          "Router"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 143,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "A distributed network configuration in which all data/information pass through a central computer is",
+        OptionsValues: [
+          "Bus Network",
+          "Star Network",
+          "Ring Network",
+          "Point to Point Network"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 144,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which layer of OSI reference model is responsible for creating and recognizing frame boundaries?",
+        OptionsValues: [
+          "Physical Layer",
+          "Data link layer",
+          "Transport layer",
+          "Network Layer"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 145,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which of the following allows devices on one network to communicate with devices on another network?",
+        OptionsValues: [
+          "Multiplexer",
+          "Gateway",
+          "Switch",
+          "modem"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 146,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "How is a single channel shared by multiple signals in a computer network?",
+        OptionsValues: [
+          "multiplexing",
+          "phase modulation",
+          "Decoder",
+          "digital modulation"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 147,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which of the following devices forwards packets between networks by processing the routing information included in the packet?",
+        OptionsValues: [
+          "firewall",
+          "bridge",
+          "hub",
+          "router"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 148,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "From which layer of the OSI model, does the data link layer take packets from and encapsulate them into frames for transmission?",
+        OptionsValues: [
+          "transport layer",
+          "application layer",
+          "network layer",
+          "physical layer"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 149,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "What does each packet contain in a virtual circuit network?",
+        OptionsValues: [
+          "only source address",
+          "only destination address",
+          "full source and destination address",
+          "a short VC number"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 150,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "In Transport layer of TCP/IP model, which address will be used ?",
+        OptionsValues: [
+          "Port addresses",
+          "Specific addresses",
+          "Logical addresses",
+          "Physical addresses"
+        ],
+        CorrectOptionValue: null
+      },{
+        QuestionNumber: 151,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Information about a process is maintained in a",
+        OptionsValues: [
+          "Stack",
+          "Translation Look aside Buffer",
+          "Process Control Block",
+          "Program Control Block"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 152,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which of the following is crucial time while accessing data on the disk?",
+        OptionsValues: [
+          "Seek time",
+          "Rotational time",
+          "Transmission time",
+          "Waiting time"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 153,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "An optimal scheduling algorithm in terms of minimizing the average waiting time of a given set of processes is",
+        OptionsValues: [
+          "FCFS scheduling algorithm",
+          "Round robin scheduling algorithm",
+          "Shortest job first scheduling algorithm",
+          "Priority scheduling algorithm"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 154,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Virtual Memory is implemented using",
+        OptionsValues: [
+          "Segmentation",
+          "Swapping",
+          "Demand Paging",
+          "Combining all physical memories"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 155,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Inter process communication can be done through",
+        OptionsValues: [
+          "Mails",
+          "Message passing",
+          "System calls",
+          "Traps"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 156,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "The primary job of the operating system of a computer is to",
+        OptionsValues: [
+          "Command Resources",
+          "Manage Resources",
+          "Provide Utilities",
+          "Be user friendly"
+        ],
+        CorrectOptionValue: "Manage Resources"
+      },
+      {
+        QuestionNumber: 157,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Paging",
+        OptionsValues: [
+          "Solves the memory fragmentation problem",
+          "Allows modular programming",
+          "Allows structured programming",
+          "Avoids deadlock"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 158,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Mutual exclusion",
+        OptionsValues: [
+          "denotes that one process is in critical reason when others are excluded",
+          "Cannot be implemented using Semaphores",
+          "Is found only in the Windows NT operating system",
+          "It is a part in compiler"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 159,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Semaphore can be used for solving",
+        OptionsValues: [
+          "Wait & signal",
+          "Deadlock",
+          "Synchronization",
+          "Priority"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 160,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "What is a shell?",
+        OptionsValues: [
+          "It is a hardware component",
+          "It is a command interpreter",
+          "It is a part in compiler",
+          "It is a tool in CPU scheduling"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 161,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "A page fault occurs",
+        OptionsValues: [
+          "When the page is not in the memory",
+          "When the page is in the memory",
+          "When the process enters the blocked state",
+          "When the process is in the ready state"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 162,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "A process said to be in ___ state if it was waiting for an event that will never occur.",
+        OptionsValues: [
+          "Safe",
+          "Unsafe",
+          "Starvation",
+          "Dead lock"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 163,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "The database environment has all of the following components except",
+        OptionsValues: [
+          "Users",
+          "separate files",
+          "database",
+          "database administration"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 164,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Normalization of database is used to",
+        OptionsValues: [
+          "Eliminate redundancy",
+          "Improve security",
+          "Improve efficiency",
+          "Minimize errors"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 165,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "E-R modelling technique is a",
+        OptionsValues: [
+          "Bottom up approach",
+          "Top down approach",
+          "Left Right approach",
+          "Right Left approach"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 166,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which SQL keyword is used to sort the result?",
+        OptionsValues: [
+          "ORDER BY",
+          "SORT-ORDER",
+          "SORT",
+          "ORDER"
+        ],
+        CorrectOptionValue: "ORDER BY"
+      },
+      {
+        QuestionNumber: 167,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which normal form is adequate for normal relational database design",
+        OptionsValues: [
+          "1NF",
+          "5NF",
+          "4NF",
+          "3NF"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 168,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which of the following is not a characteristics of a relational data base model?",
+        OptionsValues: [
+          "tables",
+          "Treelike structure",
+          "complex Logical relationships",
+          "Records"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 169,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Data items grouped together for storage purposes are called a",
+        OptionsValues: [
+          "record",
+          "title list",
+          "list",
+          "string"
+        ],
+        CorrectOptionValue: "record"
+      },
+      {
+        QuestionNumber: 170,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "The entity relationship model comes under",
+        OptionsValues: [
+          "object based logical model",
+          "record based logical model",
+          "physical data model",
+          "Grid based logical model"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 171,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "A command that lets you change one or more fields in a record is",
+        OptionsValues: [
+          "INSERT",
+          "MODIFY",
+          "LOOK UP",
+          "CHANGE"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 172,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "A file manipulation command that extracts some of the records from a file is called",
+        OptionsValues: [
+          "SELECT",
+          "PROJECT",
+          "JOIN",
+          "INDEX"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 173,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "The programming language that has the ability to create new data types is called.",
+        OptionsValues: [
+          "Overloaded",
+          "Encapsulated",
+          "Reprehensible",
+          "Extensible"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 174,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Inheritance in C++ have default access specifier as",
+        OptionsValues: [
+          "private",
+          "public",
+          "protected",
+          "default"
+        ],
+        CorrectOptionValue: "private"
+      },
+      {
+        QuestionNumber: 175,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which of the following statements is correct about the formal parameters in C++?",
+        OptionsValues: [
+          "Parameters with which functions are called",
+          "Parameters which are used in the definition of the function",
+          "Variables other than passed parameters in a function",
+          "Variables that are never used in the function"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 176,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "What function initializes variables in a class?",
+        OptionsValues: [
+          "Constructor",
+          "Destructor",
+          "static",
+          "friend"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 177,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which of the following statement is correct about Virtual Inheritance?",
+        OptionsValues: [
+          "It is a technique to ensure that a private member of a base class can be accessed",
+          "It is a technique to optimize the multiple inheritances",
+          "It is a C++ technique to avoid multiple copies of the base class into the derived or child classes",
+          "It is a technique to avoid the multiple inheritances of the classes"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 178,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which of the following is not true about polymorphism?",
+        OptionsValues: [
+          "Helps in redefining the same functionality",
+          "Increases overhead of function definition always",
+          "It is feature of OOP",
+          "Ease in readability of program"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 179,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "The object of the class can be created in any function when a constructer is defined with this access specifier",
+        OptionsValues: [
+          "Any access specifier",
+          "Private",
+          "Public",
+          "Protected"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 180,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which feature of OOP reduces the use of nested classes?",
+        OptionsValues: [
+          "Inheritance",
+          "Binding",
+          "Abstraction",
+          "Encapsulation"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 181,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which feature of OOP is exhibited by the function overriding?",
+        OptionsValues: [
+          "Polymorphism",
+          "Encapsulation",
+          "Abstraction",
+          "Inheritance"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 182,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "How to access the private member function of a class?",
+        OptionsValues: [
+          "Using class address",
+          "Using object of class",
+          "Using object pointer",
+          "Using address of member function"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 183,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "What is the environment variable that contains a list of directories where java looks for classes referenced in a program.",
+        OptionsValues: [
+          "Path class",
+          "Search path",
+          "Path dir",
+          "Class path"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 184,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "The final block is executed in java",
+        OptionsValues: [
+          "Only when a checked exception is thrown",
+          "Only when a unchecked exception is thrown",
+          "Only when a exception is thrown",
+          "Irrespective of whether an exception is thrown or not"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 185,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "The number of bytes needed to store a number which is a data type double is",
+        OptionsValues: [
+          "8",
+          "4",
+          "2",
+          "1"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 186,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which component is used to compile, debug and execute the java programs?",
+        OptionsValues: [
+          "JRE",
+          "JIT",
+          "JDK",
+          "JVM"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 187,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "What is Truncation in Java?",
+        OptionsValues: [
+          "Floating-point value assigned to a Floating type",
+          "Floating-point value assigned to an integer type",
+          "Integer value assigned to floating type",
+          "Integer value assigned to integer type"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 188,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which of these are selection statements in Java?",
+        OptionsValues: [
+          "break",
+          "continue",
+          "for()",
+          "if()"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 189,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which of these packages contains the exception Stack Overflow in Java?",
+        OptionsValues: [
+          "java.io",
+          "java.system",
+          "java.lang",
+          "java.util"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 190,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which of the following option leads to the portability and security of Java?",
+        OptionsValues: [
+          "Bytecode is executed by JVM",
+          "The applet makes the Java code secure and portable",
+          "Use of exception handling",
+          "Dynamic binding between objects"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 191,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "What is the return type of the hashCode() method in the Object class?",
+        OptionsValues: [
+          "Object",
+          "int",
+          "long",
+          "void"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 192,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Evaluate the following Java expression, if $x=3,y=5$ and $z=10:++z+y-y+z+y++$",
+        OptionsValues: [
+          "24",
+          "23",
+          "20",
+          "25"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 193,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which of the following is not an HTML tag?",
+        OptionsValues: [
+          "<select>",
+          "<input>",
+          "<textarea>",
+          "<list>"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 194,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "What does HTML stand for?",
+        OptionsValues: [
+          "Hyper Text Markup Language",
+          "High Text Markup Language",
+          "Hyper Tabular Markup Language",
+          "High Tabular Markup Language"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 195,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which of the following is NOT true regarding JavaScript?",
+        OptionsValues: [
+          "JavaScript is a loosely typed language",
+          "JavaScript cannot be used to develop games",
+          "JavaScript is not an object-based language",
+          "JavaScript can not run in standalone mode"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 196,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which HTML tag is used to create a hyperlink?",
+        OptionsValues: [
+          "<link>",
+          "<href>",
+          "a",
+          "<hyperlink>"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 197,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which method of the Component class is used to set the position and size of a component in JSP?",
+        OptionsValues: [
+          "setSize()",
+          "setBounds()",
+          "setPosition()",
+          "setPositionSize()"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 198,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which of the following programming languages is commonly used for server-side scripting in web development?",
+        OptionsValues: [
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "PHP"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 199,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "Which of the following is a popular front-end framework for building user interfaces in JavaScript?",
+        OptionsValues: [
+          "Django",
+          "Angular",
+          "Flask",
+          "Node.js"
+        ],
+        CorrectOptionValue: null
+      },
+      {
+        QuestionNumber: 200,
+        SubjectName: "Computer Science and Engineering",
+        QuestionText: "What is the purpose of JavaScript in web development?",
+        OptionsValues: [
+          "To define the structure and content of web pages",
+          "To add interactivity and behavior to web pages",
+          "To style and format web pages",
+          "To manage server-side data and databases"
+        ],
+        CorrectOptionValue: null
+      }
+    ]
   }
 ];
 module.exports = examDatabase;
