@@ -1,342 +1,737 @@
-function H(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}
-function T(t){var h=Math.floor(t/3600),m=Math.floor((t%3600)/60),s=t%60;if(h>0)return h+'h '+m+'m '+s+'s';if(m>0)return m+'m '+s+'s';return s+'s'}
-function G(p){if(p>=80)return'exc';if(p>=60)return'gd';if(p>=40)return'avg';return'pr'}
-
-function QS(){this.answer=null;this.review=false}
-QS.prototype.pick=function(v){this.answer=v;this.review=false};
-QS.prototype.tog=function(){this.review=!this.review};
-QS.prototype.clr=function(){this.answer=null};
-QS.prototype.has=function(){return this.answer!==null};
-QS.prototype.st=function(cv){
-    if(cv===null||cv===undefined)return'ungraded';
-    if(this.answer===null)return'skipped';
-    return this.answer===cv?'correct':'incorrect';
-};
-
-function SS(n){this.name=n;this.total=0;this.correct=0;this.incorrect=0;this.skipped=0;this.ungraded=0}
-SS.prototype.add=function(s){this.total++;if(s==='correct')this.correct++;else if(s==='incorrect')this.incorrect++;else if(s==='skipped')this.skipped++;else this.ungraded++};
-SS.prototype.grd=function(){return this.total-this.ungraded};
-SS.prototype.pct=function(){var g=this.grd();return g>0?(this.correct/g)*100:0};
-SS.prototype.acc=function(){var a=this.grd()-this.skipped;return a>0?(this.correct/a)*100:0};
-
-function AZ(d,st){
-    this.d=d;this.st=st;this.subs=[];this.sm=new Map();
-    this.correct=0;this.incorrect=0;this.skipped=0;this.ungraded=0;this.reviewed=0;
-    var seen=new Set();
-    for(var i=0;i<d.length;i++){
-        var q=d[i],us=st[i],s=us.st(q.CorrectOptionValue);
-        if(s==='correct')this.correct++;else if(s==='incorrect')this.incorrect++;else if(s==='skipped')this.skipped++;else this.ungraded++;
-        if(us.review)this.reviewed++;
-        if(!seen.has(q.SubjectName)){seen.add(q.SubjectName);this.subs.push(q.SubjectName);this.sm.set(q.SubjectName,new SS(q.SubjectName))}
-        this.sm.get(q.SubjectName).add(s);
-    }
+function escapeHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>');
 }
-AZ.prototype.tot=function(){return this.d.length};
-AZ.prototype.grd=function(){return this.tot()-this.ungraded};
-AZ.prototype.att=function(){return this.correct+this.incorrect};
-AZ.prototype.pct=function(){var g=this.grd();return g>0?((this.correct/g)*100).toFixed(1):'-'};
-AZ.prototype.accu=function(){var a=this.att();return a>0?((this.correct/a)*100).toFixed(1):'-'};
-AZ.prototype.grade=function(){
-    var g=this.grd();
-    if(g===0)return{l:'Ungraded',c:'ung',i:'\u2753',m:'Answer keys are not available for this paper. Your responses have been recorded but cannot be scored.'};
-    var p=parseFloat(this.pct());
-    if(p>=80)return{l:'Excellent',c:'exc',i:'\u{1F3C6}',m:'Outstanding! Exceptional understanding across all subjects.'};
-    if(p>=60)return{l:'Good',c:'gd',i:'\u2B50',m:'Good job! Solid understanding. Review areas where you lost marks.'};
-    if(p>=40)return{l:'Average',c:'avg',i:'\u{1F4CA}',m:'Fair performance. Focus on weak areas with more practice.'};
-    return{l:'Needs Improvement',c:'pr',i:'\u{1F4DA}',m:'Review all subjects thoroughly and practice more questions.'};
-};
-AZ.prototype.sub=function(n){return this.sm.get(n)};
 
-function RG(){this._e=new Map();this._d=new Map();this._y=new Map();this._q=new Map();this._c=new Map()}
-RG.prototype._k2=function(a,b){return a+'\x00'+b};
-RG.prototype._k3=function(a,b,c){return a+'\x00'+b+'\x00'+c};
-RG.prototype.ae=function(k,n,i){if(!this._e.has(k))this._e.set(k,{n:n,i:i,ds:new Set()})};
-RG.prototype.ad=function(ek,dk,n,i,ds){
-    if(!this._e.has(ek))return;
-    this._e.get(ek).ds.add(dk);
-    var k=this._k2(ek,dk);
-    if(!this._d.has(k))this._d.set(k,{id:dk,n:n,i:i,ds:ds});
-    if(!this._y.has(k))this._y.set(k,[]);
-};
-RG.prototype.ay=function(ek,dk,yr,lb,ic,bg){
-    var k=this._k2(ek,dk),l=this._y.get(k);if(!l)return;
-    for(var i=0;i<l.length;i++)if(l[i].yr===yr)return;
-    l.push({yr:yr,lb:lb,ic:ic,bg:bg});
-    l.sort(function(a,b){return b.yr-a.yr});
-};
-RG.prototype.aq=function(ek,dk,yr,cf,qs){var k=this._k3(ek,dk,yr);this._q.set(k,qs);this._c.set(k,cf)};
-RG.prototype.exams=function(){var r=[];this._e.forEach(function(v,k){r.push({k:k,n:v.n,i:v.i,c:v.ds.size})});return r};
-RG.prototype.depts=function(ek){var r=[],e=this._e.get(ek),s=this;if(!e)return r;e.ds.forEach(function(dk){var d=s._d.get(s._k2(ek,dk));if(d)r.push(d)});return r};
-RG.prototype.yrs=function(ek,dk){return this._y.get(this._k2(ek,dk))||[]};
-RG.prototype.qs=function(ek,dk,yr){return this._q.get(this._k3(ek,dk,yr))||[]};
-RG.prototype.cf=function(ek,dk,yr){return this._c.get(this._k3(ek,dk,yr))||{examTitle:'Mock Test',durationInMinutes:180}};
-RG.prototype.en=function(ek){var e=this._e.get(ek);return e?e.n:''};
-RG.prototype.dn=function(ek,dk){var d=this._d.get(this._k2(ek,dk));return d?d.n:''};
+function formatDuration(totalSeconds) {
+    var hours = Math.floor(totalSeconds / 3600);
+    var minutes = Math.floor((totalSeconds % 3600) / 60);
+    var seconds = totalSeconds % 60;
+    if (hours > 0) return hours + 'h ' + minutes + 'm ' + seconds + 's';
+    if (minutes > 0) return minutes + 'm ' + seconds + 's';
+    return seconds + 's';
+}
 
-function TM(s,el,cb){this.rem=s;this.tot=s;this.el=el;this.cb=cb;this.elapsed=0;this._id=null}
-TM.prototype.go=function(){this._r();var s=this;this._id=setInterval(function(){s.rem--;s.elapsed++;s._r();if(s.rem<=0){s.stop();if(s.cb)s.cb()}},1000)};
-TM.prototype.stop=function(){if(this._id){clearInterval(this._id);this._id=null}};
-TM.prototype._r=function(){var h=Math.floor(this.rem/3600),m=String(Math.floor((this.rem%3600)/60)).padStart(2,'0'),s=String(this.rem%60).padStart(2,'0');this.el.textContent=h>0?h+':'+m+':'+s:m+':'+s;this.el.classList.toggle('warn',this.rem<=300)};
+function gradeClass(percent) {
+    if (percent >= 80) return 'excellent';
+    if (percent >= 60) return 'good';
+    if (percent >= 40) return 'average';
+    return 'poor';
+}
 
-function RN(az,cf,nm,el){this.az=az;this.cf=cf;this.nm=nm;this.el=el}
-RN.prototype.html=function(){
-    var a=this.az,g=a.grade(),t=this.cf.examTitle||'Mock Test',tm=T(this.el);
-    var dt=new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-    var h='<div class="ri">';
-    h+='<div class="rbn an"><h1>'+H(t)+'</h1><p>'+(this.nm?H(this.nm)+' &bull; ':'')+dt+'</p></div>';
-    h+='<div class="scw an d1"><div class="sc"><div class="sv">'+a.correct+'</div><div class="sto">out of '+a.grd()+(a.ungraded?' ('+a.ungraded+' ungraded)':'')+'</div><div class="sp '+g.c+'">'+a.pct()+(a.pct()!=='-'?'%':'')+'</div></div></div>';
-    h+='<div class="sg an d2">';
-    h+=this._sd('z1','\u2705',a.correct,'Correct');
-    h+=this._sd('z2','\u274C',a.incorrect,'Incorrect');
-    h+=this._sd('z3','\u23ED\uFE0F',a.skipped,'Skipped');
-    h+=this._sd('z4','\u2753',a.ungraded,'Ungraded');
-    h+=this._sd('z5','\u{1F3AF}',a.accu()+(a.accu()!=='-'?'%':''),'Accuracy');
-    h+=this._sd('z6','\u23F1\uFE0F',tm,'Time Taken');
-    h+=this._sd('z7','\u{1F516}',a.reviewed,'Reviewed');
-    h+='</div>';
-    h+='<div class="rnk an d3"><div class="rkb r-'+g.c+'">'+g.i+' '+g.l+'</div><div class="rkm">'+g.m+'</div></div>';
-    h+='<div class="sec an d3">\u{1F4CA} Visual Analysis</div>';
-    h+='<div class="chs an d4"><div class="chc">'+this._dn(a)+'</div><div class="chc">'+this._br(a)+'</div></div>';
-    h+='<div class="sec an d4">\u{1F4DA} Subject Performance</div>';
-    h+='<div class="spg an d5">';
-    for(var i=0;i<a.subs.length;i++){
-        var sn=a.subs[i],sd=a.sub(sn),pc=sd.pct().toFixed(1),ac=sd.acc().toFixed(1),bc=sd.grd()>0?G(parseFloat(pc)):'ung';
-        h+='<div class="spc"><div class="sph"><div class="spn">'+H(sn)+'</div><div class="sps">'+sd.correct+'/'+sd.grd()+(sd.ungraded?' (+'+sd.ungraded+' ungraded)':'')+'</div></div>';
-        h+='<div class="bar"><div class="bf '+bc+'" data-tw="'+(sd.grd()>0?pc:'0')+'%" style="width:0%"></div></div>';
-        h+='<div class="spr">';
-        h+='<div class="spi"><div class="md" style="background:var(--grn)"></div>'+sd.correct+'</div>';
-        h+='<div class="spi"><div class="md" style="background:var(--red)"></div>'+sd.incorrect+'</div>';
-        h+='<div class="spi"><div class="md" style="background:var(--gry)"></div>'+sd.skipped+' skip</div>';
-        if(sd.ungraded)h+='<div class="spi"><div class="md" style="background:var(--pur)"></div>'+sd.ungraded+' N/A</div>';
-        h+='<div class="spi"><div class="md" style="background:var(--acc)"></div>Acc: '+(sd.grd()>0?ac+'%':'-')+'</div>';
-        h+='</div></div>';
-    }
-    h+='</div>';
-    h+=this._rv(a);
-    h+='<div class="ract"><button class="rhm" onclick="E.home()">\u{1F3E0} Home</button><button class="rrd" onclick="E.redo()">\u{1F504} Retake</button></div>';
-    h+='</div>';
-    return h;
+function QuestionState() {
+    this.answer = null;
+    this.review = false;
+}
+QuestionState.prototype.selectAnswer = function(value) {
+    this.answer = value;
+    this.review = false;
 };
-RN.prototype._sd=function(c,i,v,l){return'<div class="sd '+c+'"><div class="di">'+i+'</div><div class="dn">'+v+'</div><div class="dl">'+l+'</div></div>'};
-RN.prototype._dn=function(a){
-    var tot=a.tot(),segs=[{v:a.correct,c:'#22c55e',l:'Correct'},{v:a.incorrect,c:'#ef4444',l:'Incorrect'},{v:a.skipped,c:'#94a3b8',l:'Skipped'},{v:a.ungraded,c:'#8b5cf6',l:'Ungraded'}];
-    var r=60,sw=20,cx=80,cy=80,ci=2*Math.PI*r,off=0;
-    var svg='<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#e2e8f0" stroke-width="'+sw+'"/>';
-    for(var i=0;i<segs.length;i++){var p=tot>0?segs[i].v/tot:0,d=p*ci;if(p>0)svg+='<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="'+segs[i].c+'" stroke-width="'+sw+'" stroke-dasharray="'+d+' '+(ci-d)+'" stroke-dashoffset="'+(-off)+'" transform="rotate(-90 '+cx+' '+cy+')"/>';off+=d}
-    var lg='';for(var j=0;j<segs.length;j++)if(segs[j].v>0)lg+='<div class="cli"><div class="cld" style="background:'+segs[j].c+'"></div>'+segs[j].l+': '+segs[j].v+'</div>';
-    return'<h3>Distribution</h3><div class="dc"><svg viewBox="0 0 160 160" width="160" height="160">'+svg+'</svg><div class="dcn"><div class="dv">'+a.att()+'</div><div class="dll">Attempted</div></div></div><div class="clg">'+lg+'</div>';
+QuestionState.prototype.toggleReview = function() {
+    this.review = !this.review;
 };
-RN.prototype._br=function(a){
-    var h='<h3>Subject Scores</h3><div style="width:100%">',mx=1;
-    for(var i=0;i<a.subs.length;i++){var g=a.sub(a.subs[i]).grd();if(g>mx)mx=g}
-    for(var j=0;j<a.subs.length;j++){
-        var sn=a.subs[j],sd=a.sub(sn),gt=sd.grd();
-        if(gt===0&&sd.ungraded>0){h+='<div style="margin-bottom:10px"><div style="font-size:.72rem;font-weight:600;color:var(--mu);margin-bottom:3px">'+H(sn.length>14?sn.substring(0,14)+'\u2026':sn)+'</div><div style="height:18px;background:#f3e8ff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:#7c3aed">All ungraded</div></div>';continue}
-        var wc=gt>0?((sd.correct/mx)*100).toFixed(0):'0',wi=gt>0?((sd.incorrect/mx)*100).toFixed(0):'0',ws=gt>0?((sd.skipped/mx)*100).toFixed(0):'0';
-        var short=sn.length>14?sn.substring(0,14)+'\u2026':sn;
-        h+='<div style="margin-bottom:10px"><div style="font-size:.72rem;font-weight:600;color:var(--mu);margin-bottom:3px">'+H(short)+'</div>';
-        h+='<div style="display:flex;height:18px;background:#e2e8f0;border-radius:4px;overflow:hidden">';
-        if(sd.correct>0)h+='<div style="width:'+wc+'%;background:linear-gradient(90deg,#22c55e,#16a34a);color:#fff;font-size:.6rem;font-weight:700;display:flex;align-items:center;justify-content:center" data-tw="'+wc+'%">'+sd.correct+'</div>';
-        if(sd.incorrect>0)h+='<div style="width:'+wi+'%;background:linear-gradient(90deg,#ef4444,#dc2626);color:#fff;font-size:.6rem;font-weight:700;display:flex;align-items:center;justify-content:center" data-tw="'+wi+'%">'+sd.incorrect+'</div>';
-        if(sd.skipped>0)h+='<div style="width:'+ws+'%;background:linear-gradient(90deg,#94a3b8,#64748b);color:#fff;font-size:.6rem;font-weight:700;display:flex;align-items:center;justify-content:center" data-tw="'+ws+'%">'+sd.skipped+'</div>';
-        h+='</div></div>';
-    }
-    h+='</div><div class="clg"><div class="cli"><div class="cld" style="background:#22c55e"></div>Correct</div><div class="cli"><div class="cld" style="background:#ef4444"></div>Wrong</div><div class="cli"><div class="cld" style="background:#94a3b8"></div>Skip</div></div>';
-    return h;
+QuestionState.prototype.clearAnswer = function() {
+    this.answer = null;
 };
-RN.prototype._rv=function(a){
-    var qd=a.d,us=a.st;
-    var h='<div class="sec">\u{1F50D} Question Review</div>';
-    h+='<div class="rf" id="rsb"><div class="ft fo" data-sf="ALL" onclick="E.rfs(\'ALL\')">All Subjects</div>';
-    for(var i=0;i<a.subs.length;i++){var sn=H(a.subs[i]);h+='<div class="ft" data-sf="'+sn+'" onclick="E.rfs(\''+sn.replace(/'/g,"\\'")+'\')">'+sn+'</div>'}
-    h+='</div><div class="rf" id="rfl">';
-    h+='<button class="ft fo" data-ft="all" onclick="E.rft(\'all\')">All <span class="fc">'+a.tot()+'</span></button>';
-    h+='<button class="ft" data-ft="correct" onclick="E.rft(\'correct\')">\u2705 <span class="fc">'+a.correct+'</span></button>';
-    h+='<button class="ft" data-ft="incorrect" onclick="E.rft(\'incorrect\')">\u274C <span class="fc">'+a.incorrect+'</span></button>';
-    h+='<button class="ft" data-ft="skipped" onclick="E.rft(\'skipped\')">\u23ED <span class="fc">'+a.skipped+'</span></button>';
-    if(a.ungraded>0)h+='<button class="ft" data-ft="ungraded" onclick="E.rft(\'ungraded\')">\u2753 <span class="fc">'+a.ungraded+'</span></button>';
-    h+='</div><div id="rqs">';
-    for(var i=0;i<qd.length;i++){
-        var q=qd[i],st=us[i],s=st.st(q.CorrectOptionValue),sc,sl;
-        if(s==='correct'){sc='xc';sl='\u2705 Correct'}else if(s==='incorrect'){sc='xi';sl='\u274C Incorrect'}else if(s==='skipped'){sc='xs';sl='\u23ED Skipped'}else{sc='xu';sl='\u2753 Ungraded'}
-        h+='<div class="rq" data-rs="'+s+'" data-ru="'+H(q.SubjectName)+'">';
-        h+='<div class="rqh"><div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap"><span class="rqn">Q'+q.QuestionNumber+'</span><span class="rqs">'+H(q.SubjectName)+'</span></div><span class="rqt '+sc+'">'+sl+'</span></div>';
-        h+='<div class="rqbd"><div class="rqtx">'+H(q.QuestionText)+'</div>';
-        for(var oi=0;oi<q.OptionsValues.length;oi++){
-            var o=q.OptionsValues[oi],ic=q.CorrectOptionValue!==null&&o===q.CorrectOptionValue,iu=st.answer===o;
-            var oc='on',mk=String.fromCharCode(65+oi);
-            if(ic){oc='oc';mk='\u2713'}else if(iu&&q.CorrectOptionValue!==null){oc='ow';mk='\u2717'}else if(iu&&q.CorrectOptionValue===null){oc='ou';mk='\u2022'}
-            h+='<div class="ro '+oc+'"><div class="rm">'+mk+'</div><span>'+H(o)+'</span></div>';
+QuestionState.prototype.hasAnswer = function() {
+    return this.answer !== null;
+};
+QuestionState.prototype.evaluateStatus = function(correctValue) {
+    if (correctValue === null || correctValue === undefined) return 'ungraded';
+    if (this.answer === null) return 'skipped';
+    return this.answer === correctValue ? 'correct' : 'incorrect';
+};
+
+function SubjectStats(name) {
+    this.name = name;
+    this.total = 0;
+    this.correct = 0;
+    this.incorrect = 0;
+    this.skipped = 0;
+    this.ungraded = 0;
+}
+SubjectStats.prototype.recordResult = function(status) {
+    this.total++;
+    if (status === 'correct') this.correct++;
+    else if (status === 'incorrect') this.incorrect++;
+    else if (status === 'skipped') this.skipped++;
+    else this.ungraded++;
+};
+SubjectStats.prototype.gradableCount = function() {
+    return this.total - this.ungraded;
+};
+SubjectStats.prototype.scorePercent = function() {
+    var gradable = this.gradableCount();
+    return gradable > 0 ? (this.correct / gradable) * 100 : 0;
+};
+SubjectStats.prototype.accuracyPercent = function() {
+    var attempted = this.gradableCount() - this.skipped;
+    return attempted > 0 ? (this.correct / attempted) * 100 : 0;
+};
+
+function AnalysisEngine(questions, states) {
+    this.questions = questions;
+    this.states = states;
+    this.subjectNames = [];
+    this.subjectMap = new Map();
+    this.correctCount = 0;
+    this.incorrectCount = 0;
+    this.skippedCount = 0;
+    this.ungradedCount = 0;
+    this.reviewedCount = 0;
+    this._analyze();
+}
+AnalysisEngine.prototype._analyze = function() {
+    var seen = new Set();
+    for (var i = 0; i < this.questions.length; i++) {
+        var question = this.questions[i];
+        var state = this.states[i];
+        var status = state.evaluateStatus(question.CorrectOptionValue);
+        if (status === 'correct') this.correctCount++;
+        else if (status === 'incorrect') this.incorrectCount++;
+        else if (status === 'skipped') this.skippedCount++;
+        else this.ungradedCount++;
+        if (state.review) this.reviewedCount++;
+        if (!seen.has(question.SubjectName)) {
+            seen.add(question.SubjectName);
+            this.subjectNames.push(question.SubjectName);
+            this.subjectMap.set(question.SubjectName, new SubjectStats(question.SubjectName));
         }
-        h+='</div><div class="rqsm">';
-        if(s==='correct')h+='<span class="gc">\u2705 Correct!</span>';
-        else if(s==='incorrect'){h+='<span class="wc">Yours: '+H(st.answer)+'</span>';h+='<span class="gc">Answer: '+H(q.CorrectOptionValue)+'</span>'}
-        else if(s==='skipped'){h+='<span style="color:var(--gry)">Not attempted</span>';if(q.CorrectOptionValue!==null)h+='<span class="gc">Answer: '+H(q.CorrectOptionValue)+'</span>';else h+='<span class="uc">Answer key N/A</span>'}
-        else{if(st.answer!==null)h+='<span class="uc">Your pick: '+H(st.answer)+'</span>';h+='<span class="uc">Answer key not available</span>'}
-        h+='</div></div>';
+        this.subjectMap.get(question.SubjectName).recordResult(status);
     }
-    h+='</div>';return h;
+};
+AnalysisEngine.prototype.totalQuestions = function() { return this.questions.length; };
+AnalysisEngine.prototype.gradableTotal = function() { return this.totalQuestions() - this.ungradedCount; };
+AnalysisEngine.prototype.attemptedCount = function() { return this.correctCount + this.incorrectCount; };
+AnalysisEngine.prototype.scorePercent = function() {
+    var gradable = this.gradableTotal();
+    return gradable > 0 ? ((this.correctCount / gradable) * 100).toFixed(1) : '-';
+};
+AnalysisEngine.prototype.accuracyPercent = function() {
+    var attempted = this.attemptedCount();
+    return attempted > 0 ? ((this.correctCount / attempted) * 100).toFixed(1) : '-';
+};
+AnalysisEngine.prototype.getGrade = function() {
+    if (this.gradableTotal() === 0) return { label: 'Ungraded', cssClass: 'ungraded', icon: '\u2753', message: 'Answer keys are not available for this paper. Your responses have been recorded but cannot be scored.' };
+    var percent = parseFloat(this.scorePercent());
+    if (percent >= 80) return { label: 'Excellent', cssClass: 'excellent', icon: '\u{1F3C6}', message: 'Outstanding! Exceptional understanding across all subjects.' };
+    if (percent >= 60) return { label: 'Good', cssClass: 'good', icon: '\u2B50', message: 'Good work! Solid understanding. Review areas where you lost marks.' };
+    if (percent >= 40) return { label: 'Average', cssClass: 'average', icon: '\u{1F4CA}', message: 'Fair performance. Focus on weak areas with more practice.' };
+    return { label: 'Needs Improvement', cssClass: 'poor', icon: '\u{1F4DA}', message: 'Review all subjects thoroughly and practice more questions.' };
+};
+AnalysisEngine.prototype.getSubjectStats = function(name) { return this.subjectMap.get(name); };
+
+function ExamRegistry() {
+    this._exams = new Map();
+    this._departments = new Map();
+    this._years = new Map();
+    this._questions = new Map();
+    this._configs = new Map();
+}
+ExamRegistry.prototype._deptKey = function(examKey, deptId) { return examKey + '\x01' + deptId; };
+ExamRegistry.prototype._fullKey = function(examKey, deptId, year) { return examKey + '\x01' + deptId + '\x01' + year; };
+ExamRegistry.prototype.registerExam = function(key, name, icon) {
+    if (!this._exams.has(key)) this._exams.set(key, { name: name, icon: icon, departmentIds: new Set() });
+};
+ExamRegistry.prototype.registerDepartment = function(examKey, deptId, name, icon, description) {
+    if (!this._exams.has(examKey)) return;
+    this._exams.get(examKey).departmentIds.add(deptId);
+    var key = this._deptKey(examKey, deptId);
+    if (!this._departments.has(key)) this._departments.set(key, { id: deptId, name: name, icon: icon, description: description });
+    if (!this._years.has(key)) this._years.set(key, []);
+};
+ExamRegistry.prototype.registerYear = function(examKey, deptId, year, label, icon, badge) {
+    var key = this._deptKey(examKey, deptId);
+    var yearList = this._years.get(key);
+    if (!yearList) return;
+    for (var i = 0; i < yearList.length; i++) if (yearList[i].year === year) return;
+    yearList.push({ year: year, label: label, icon: icon, badge: badge });
+    yearList.sort(function(a, b) { return b.year - a.year; });
+};
+ExamRegistry.prototype.registerQuestions = function(examKey, deptId, year, config, questions) {
+    var key = this._fullKey(examKey, deptId, year);
+    this._questions.set(key, questions);
+    this._configs.set(key, config);
+};
+ExamRegistry.prototype.getExams = function() {
+    var result = [];
+    this._exams.forEach(function(data, key) { result.push({ key: key, name: data.name, icon: data.icon, count: data.departmentIds.size }); });
+    return result;
+};
+ExamRegistry.prototype.getDepartments = function(examKey) {
+    var result = [];
+    var examData = this._exams.get(examKey);
+    if (!examData) return result;
+    var self = this;
+    examData.departmentIds.forEach(function(deptId) {
+        var dept = self._departments.get(self._deptKey(examKey, deptId));
+        if (dept) result.push(dept);
+    });
+    return result;
+};
+ExamRegistry.prototype.getYears = function(examKey, deptId) { return this._years.get(this._deptKey(examKey, deptId)) || []; };
+ExamRegistry.prototype.getQuestions = function(examKey, deptId, year) { return this._questions.get(this._fullKey(examKey, deptId, year)) || []; };
+ExamRegistry.prototype.getConfig = function(examKey, deptId, year) { return this._configs.get(this._fullKey(examKey, deptId, year)) || { examTitle: 'Mock Test', durationInMinutes: 180 }; };
+ExamRegistry.prototype.getExamName = function(key) { var e = this._exams.get(key); return e ? e.name : ''; };
+ExamRegistry.prototype.getDeptName = function(examKey, deptId) { var d = this._departments.get(this._deptKey(examKey, deptId)); return d ? d.name : ''; };
+
+function TimerController(totalSeconds, displayElement, onExpire) {
+    this.remaining = totalSeconds;
+    this.totalTime = totalSeconds;
+    this.elapsed = 0;
+    this.displayElement = displayElement;
+    this.onExpire = onExpire;
+    this._intervalId = null;
+}
+TimerController.prototype.start = function() {
+    this._render();
+    var self = this;
+    this._intervalId = setInterval(function() {
+        self.remaining--;
+        self.elapsed++;
+        self._render();
+        if (self.remaining <= 0) { self.stop(); if (self.onExpire) self.onExpire(); }
+    }, 1000);
+};
+TimerController.prototype.stop = function() {
+    if (this._intervalId) { clearInterval(this._intervalId); this._intervalId = null; }
+};
+TimerController.prototype._render = function() {
+    var h = Math.floor(this.remaining / 3600);
+    var m = String(Math.floor((this.remaining % 3600) / 60)).padStart(2, '0');
+    var s = String(this.remaining % 60).padStart(2, '0');
+    this.displayElement.textContent = h > 0 ? h + ':' + m + ':' + s : m + ':' + s;
+    this.displayElement.classList.toggle('danger', this.remaining <= 300);
 };
 
-var E={
-    rg:new RG(),ek:null,dk:null,yr:null,un:'',
-    qd:[],uc:{},us:[],su:[],ci:0,cs:'',tm:null,
-    _fs:'all',_fu:'ALL',
+function ResultsView(analysis, config, studentName, elapsedSeconds) {
+    this.analysis = analysis;
+    this.config = config;
+    this.studentName = studentName;
+    this.elapsedSeconds = elapsedSeconds;
+}
+ResultsView.prototype.generateHtml = function() {
+    var analysis = this.analysis;
+    var grade = analysis.getGrade();
+    var title = this.config.examTitle || 'Mock Test';
+    var timeTaken = formatDuration(this.elapsedSeconds);
+    var dateString = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    var pctValue = analysis.scorePercent();
+    var pctClass = analysis.gradableTotal() > 0 ? 'pct-' + gradeClass(parseFloat(pctValue)) : 'pct-ungraded';
+    var html = '<div class="results-inner">';
+    html += '<div class="results-banner anim-in"><h1>' + escapeHtml(title) + '</h1><p>' + (this.studentName ? escapeHtml(this.studentName) + ' &bull; ' : '') + dateString + '</p></div>';
+    html += '<div class="score-ring-wrap anim-in anim-d1"><div class="score-ring"><div class="score-big">' + analysis.correctCount + '</div><div class="score-of">out of ' + analysis.gradableTotal() + (analysis.ungradedCount ? ' (+' + analysis.ungradedCount + ' N/A)' : '') + '</div><div class="score-pct ' + pctClass + '">' + pctValue + (pctValue !== '-' ? '%' : '') + '</div></div></div>';
+    html += '<div class="stats-row anim-in anim-d2">';
+    html += this._tile('color-correct', '\u2705', analysis.correctCount, 'Correct');
+    html += this._tile('color-wrong', '\u274C', analysis.incorrectCount, 'Incorrect');
+    html += this._tile('color-skip', '\u23ED\uFE0F', analysis.skippedCount, 'Skipped');
+    html += this._tile('color-ungraded', '\u2753', analysis.ungradedCount, 'Ungraded');
+    var accValue = analysis.accuracyPercent();
+    html += this._tile('color-accuracy', '\u{1F3AF}', accValue + (accValue !== '-' ? '%' : ''), 'Accuracy');
+    html += this._tile('color-time', '\u23F1\uFE0F', timeTaken, 'Time');
+    html += this._tile('color-review', '\u{1F516}', analysis.reviewedCount, 'Reviewed');
+    html += '</div>';
+    html += '<div class="grade-box anim-in anim-d3"><div class="grade-badge badge-' + grade.cssClass + '">' + grade.icon + ' ' + grade.label + '</div><div class="grade-msg">' + grade.message + '</div></div>';
+    html += '<div class="section-heading anim-in anim-d3">\u{1F4CA} Visual Analysis</div>';
+    html += '<div class="charts-row anim-in anim-d4"><div class="chart-box">' + this._buildDonut() + '</div><div class="chart-box">' + this._buildBars() + '</div></div>';
+    html += '<div class="section-heading anim-in anim-d4">\u{1F4DA} Subject Performance</div>';
+    html += '<div class="subject-cards anim-in anim-d5">';
+    for (var i = 0; i < analysis.subjectNames.length; i++) {
+        var subjectName = analysis.subjectNames[i];
+        var subjectData = analysis.getSubjectStats(subjectName);
+        var subjectPct = subjectData.scorePercent().toFixed(1);
+        var subjectAcc = subjectData.accuracyPercent().toFixed(1);
+        var fillClass = subjectData.gradableCount() > 0 ? 'fill-' + gradeClass(parseFloat(subjectPct)) : 'fill-ungraded';
+        html += '<div class="subject-card"><div class="subject-card-top"><div class="subject-name">' + escapeHtml(subjectName) + '</div><div class="subject-score">' + subjectData.correct + '/' + subjectData.gradableCount() + (subjectData.ungraded ? ' (+' + subjectData.ungraded + ' N/A)' : '') + '</div></div>';
+        html += '<div class="progress-track"><div class="progress-fill ' + fillClass + '" data-target-width="' + (subjectData.gradableCount() > 0 ? subjectPct : '0') + '%" style="width:0%"></div></div>';
+        html += '<div class="subject-mini-stats">';
+        html += '<div class="mini-stat"><div class="mini-dot" style="background:var(--green)"></div>' + subjectData.correct + '</div>';
+        html += '<div class="mini-stat"><div class="mini-dot" style="background:var(--red)"></div>' + subjectData.incorrect + '</div>';
+        html += '<div class="mini-stat"><div class="mini-dot" style="background:var(--gray)"></div>' + subjectData.skipped + ' skip</div>';
+        if (subjectData.ungraded) html += '<div class="mini-stat"><div class="mini-dot" style="background:var(--purple)"></div>' + subjectData.ungraded + ' N/A</div>';
+        html += '<div class="mini-stat"><div class="mini-dot" style="background:var(--accent)"></div>Acc: ' + (subjectData.gradableCount() > 0 ? subjectAcc + '%' : '-') + '</div>';
+        html += '</div></div>';
+    }
+    html += '</div>';
+    html += this._buildReviewSection();
+    html += '<div class="results-actions"><button class="home-btn" onclick="TestEngine.goHome()">\u{1F3E0} Home</button><button class="retake-btn" onclick="TestEngine.retakeExam()">\u{1F504} Retake</button></div>';
+    html += '</div>';
+    return html;
+};
+ResultsView.prototype._tile = function(colorClass, icon, value, label) {
+    return '<div class="stat-tile ' + colorClass + '"><div class="tile-icon">' + icon + '</div><div class="tile-value">' + value + '</div><div class="tile-label">' + label + '</div></div>';
+};
+ResultsView.prototype._buildDonut = function() {
+    var analysis = this.analysis;
+    var total = analysis.totalQuestions();
+    var segments = [
+        { value: analysis.correctCount, color: '#22c55e', label: 'Correct' },
+        { value: analysis.incorrectCount, color: '#ef4444', label: 'Incorrect' },
+        { value: analysis.skippedCount, color: '#94a3b8', label: 'Skipped' },
+        { value: analysis.ungradedCount, color: '#8b5cf6', label: 'Ungraded' }
+    ];
+    var radius = 55, strokeWidth = 18, cx = 75, cy = 75;
+    var circumference = 2 * Math.PI * radius;
+    var offset = 0;
+    var svg = '<circle cx="' + cx + '" cy="' + cy + '" r="' + radius + '" fill="none" stroke="#e2e8f0" stroke-width="' + strokeWidth + '"/>';
+    for (var i = 0; i < segments.length; i++) {
+        var proportion = total > 0 ? segments[i].value / total : 0;
+        var dashLength = proportion * circumference;
+        if (proportion > 0) {
+            svg += '<circle cx="' + cx + '" cy="' + cy + '" r="' + radius + '" fill="none" stroke="' + segments[i].color + '" stroke-width="' + strokeWidth + '" stroke-dasharray="' + dashLength + ' ' + (circumference - dashLength) + '" stroke-dashoffset="' + (-offset) + '" transform="rotate(-90 ' + cx + ' ' + cy + ')"/>';
+        }
+        offset += dashLength;
+    }
+    var legendHtml = '';
+    for (var j = 0; j < segments.length; j++) {
+        if (segments[j].value > 0) legendHtml += '<div class="legend-entry"><div class="legend-swatch" style="background:' + segments[j].color + '"></div>' + segments[j].label + ': ' + segments[j].value + '</div>';
+    }
+    return '<h3>Distribution</h3><div class="donut-wrap"><svg viewBox="0 0 150 150" width="150" height="150">' + svg + '</svg><div class="donut-center"><div class="donut-num">' + analysis.attemptedCount() + '</div><div class="donut-txt">Attempted</div></div></div><div class="chart-legend">' + legendHtml + '</div>';
+};
+ResultsView.prototype._buildBars = function() {
+    var analysis = this.analysis;
+    var html = '<h3>Subject Scores</h3><div style="width:100%">';
+    var maxGradable = 1;
+    for (var i = 0; i < analysis.subjectNames.length; i++) {
+        var gradable = analysis.getSubjectStats(analysis.subjectNames[i]).gradableCount();
+        if (gradable > maxGradable) maxGradable = gradable;
+    }
+    for (var j = 0; j < analysis.subjectNames.length; j++) {
+        var subjectName = analysis.subjectNames[j];
+        var stats = analysis.getSubjectStats(subjectName);
+        var shortName = subjectName.length > 14 ? subjectName.substring(0, 14) + '\u2026' : subjectName;
+        html += '<div style="margin-bottom:10px"><div style="font-size:.72rem;font-weight:600;color:var(--text-muted);margin-bottom:3px">' + escapeHtml(shortName) + '</div>';
+        if (stats.gradableCount() === 0) {
+            html += '<div style="height:18px;background:#f3e8ff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:#7c3aed">All ungraded</div></div>';
+            continue;
+        }
+        html += '<div style="display:flex;height:18px;background:#e2e8f0;border-radius:4px;overflow:hidden">';
+        if (stats.correct > 0) html += '<div style="width:' + ((stats.correct / maxGradable) * 100).toFixed(0) + '%;background:linear-gradient(90deg,#22c55e,#16a34a);color:#fff;font-size:.6rem;font-weight:700;display:flex;align-items:center;justify-content:center">' + stats.correct + '</div>';
+        if (stats.incorrect > 0) html += '<div style="width:' + ((stats.incorrect / maxGradable) * 100).toFixed(0) + '%;background:linear-gradient(90deg,#ef4444,#dc2626);color:#fff;font-size:.6rem;font-weight:700;display:flex;align-items:center;justify-content:center">' + stats.incorrect + '</div>';
+        if (stats.skipped > 0) html += '<div style="width:' + ((stats.skipped / maxGradable) * 100).toFixed(0) + '%;background:linear-gradient(90deg,#94a3b8,#64748b);color:#fff;font-size:.6rem;font-weight:700;display:flex;align-items:center;justify-content:center">' + stats.skipped + '</div>';
+        html += '</div></div>';
+    }
+    html += '</div><div class="chart-legend"><div class="legend-entry"><div class="legend-swatch" style="background:#22c55e"></div>Correct</div><div class="legend-entry"><div class="legend-swatch" style="background:#ef4444"></div>Wrong</div><div class="legend-entry"><div class="legend-swatch" style="background:#94a3b8"></div>Skip</div></div>';
+    return html;
+};
+ResultsView.prototype._buildReviewSection = function() {
+    var analysis = this.analysis;
+    var questions = analysis.questions;
+    var states = analysis.states;
+    var html = '<div class="section-heading">\u{1F50D} Question Review</div>';
+    html += '<div class="filter-row" id="subject-filter-row"><div class="filter-chip chip-active" data-subject-filter="ALL" onclick="TestEngine.filterBySubject(\'ALL\')">All Subjects</div>';
+    for (var s = 0; s < analysis.subjectNames.length; s++) {
+        var escaped = escapeHtml(analysis.subjectNames[s]);
+        html += '<div class="filter-chip" data-subject-filter="' + escaped + '" onclick="TestEngine.filterBySubject(\'' + escaped.replace(/'/g, "\\'") + '\')">' + escaped + '</div>';
+    }
+    html += '</div>';
+    html += '<div class="filter-row" id="status-filter-row">';
+    html += '<button class="filter-chip chip-active" data-status-filter="all" onclick="TestEngine.filterByStatus(\'all\')">All <span class="chip-count">' + analysis.totalQuestions() + '</span></button>';
+    html += '<button class="filter-chip" data-status-filter="correct" onclick="TestEngine.filterByStatus(\'correct\')">\u2705 <span class="chip-count">' + analysis.correctCount + '</span></button>';
+    html += '<button class="filter-chip" data-status-filter="incorrect" onclick="TestEngine.filterByStatus(\'incorrect\')">\u274C <span class="chip-count">' + analysis.incorrectCount + '</span></button>';
+    html += '<button class="filter-chip" data-status-filter="skipped" onclick="TestEngine.filterByStatus(\'skipped\')">\u23ED <span class="chip-count">' + analysis.skippedCount + '</span></button>';
+    if (analysis.ungradedCount > 0) html += '<button class="filter-chip" data-status-filter="ungraded" onclick="TestEngine.filterByStatus(\'ungraded\')">\u2753 <span class="chip-count">' + analysis.ungradedCount + '</span></button>';
+    html += '</div><div id="review-cards-container">';
+    for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var state = states[i];
+        var status = state.evaluateStatus(question.CorrectOptionValue);
+        var statusClass, statusText;
+        if (status === 'correct') { statusClass = 'status-correct'; statusText = '\u2705 Correct'; }
+        else if (status === 'incorrect') { statusClass = 'status-wrong'; statusText = '\u274C Incorrect'; }
+        else if (status === 'skipped') { statusClass = 'status-skip'; statusText = '\u23ED Skipped'; }
+        else { statusClass = 'status-ungraded'; statusText = '\u2753 Ungraded'; }
+        html += '<div class="review-card" data-review-status="' + status + '" data-review-subject="' + escapeHtml(question.SubjectName) + '">';
+        html += '<div class="review-card-head"><div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap"><span class="review-qnum">Q' + question.QuestionNumber + '</span><span class="review-subject">' + escapeHtml(question.SubjectName) + '</span></div><span class="review-status ' + statusClass + '">' + statusText + '</span></div>';
+        html += '<div class="review-card-body"><div class="review-question-text">' + escapeHtml(question.QuestionText) + '</div>';
+        for (var optIdx = 0; optIdx < question.OptionsValues.length; optIdx++) {
+            var optionText = question.OptionsValues[optIdx];
+            var isCorrectOption = question.CorrectOptionValue !== null && optionText === question.CorrectOptionValue;
+            var isUserPick = state.answer === optionText;
+            var optClass = 'opt-neutral';
+            var markerText = String.fromCharCode(65 + optIdx);
+            if (isCorrectOption) { optClass = 'opt-correct'; markerText = '\u2713'; }
+            else if (isUserPick && question.CorrectOptionValue !== null) { optClass = 'opt-wrong'; markerText = '\u2717'; }
+            else if (isUserPick && question.CorrectOptionValue === null) { optClass = 'opt-picked'; markerText = '\u2022'; }
+            html += '<div class="review-opt ' + optClass + '"><div class="review-marker">' + markerText + '</div><span>' + escapeHtml(optionText) + '</span></div>';
+        }
+        html += '</div><div class="review-card-footer">';
+        if (status === 'correct') html += '<span class="text-correct">\u2705 Correct!</span>';
+        else if (status === 'incorrect') { html += '<span class="text-wrong">Yours: ' + escapeHtml(state.answer) + '</span>'; html += '<span class="text-correct">Answer: ' + escapeHtml(question.CorrectOptionValue) + '</span>'; }
+        else if (status === 'skipped') { html += '<span style="color:var(--gray)">Not attempted</span>'; if (question.CorrectOptionValue !== null) html += '<span class="text-correct">Answer: ' + escapeHtml(question.CorrectOptionValue) + '</span>'; else html += '<span class="text-na">Key N/A</span>'; }
+        else { if (state.answer !== null) html += '<span class="text-na">Your pick: ' + escapeHtml(state.answer) + '</span>'; html += '<span class="text-na">Answer key not available</span>'; }
+        html += '</div></div>';
+    }
+    html += '</div>';
+    return html;
+};
 
-    init:function(){this._ld();this._ex()},
+var TestEngine = {
+    registry: new ExamRegistry(),
+    selectedExamKey: null,
+    selectedDeptId: null,
+    selectedYear: null,
+    studentName: '',
+    activeQuestions: [],
+    activeConfig: {},
+    questionStates: [],
+    subjectList: [],
+    currentQuestionIndex: 0,
+    currentSubject: '',
+    timer: null,
+    _activeStatusFilter: 'all',
+    _activeSubjectFilter: 'ALL',
 
-    _ld:function(){
-        if(typeof examDatabase==='undefined')return;
-        for(var i=0;i<examDatabase.length;i++){
-            var e=examDatabase[i],ek=e.ExamName;
-            this.rg.ae(ek,e.ExamName,e.ExamIcon);
-            this.rg.ad(ek,e.DepartmentID,e.DepartmentName,e.DepartmentIcon,e.DepartmentDescription);
-            this.rg.ay(ek,e.DepartmentID,e.ExamYear,e.ExamYearLabel||String(e.ExamYear),e.ExamYearIcon||'\u{1F4C5}',e.ExamYearBadge||'');
-            this.rg.aq(ek,e.DepartmentID,e.ExamYear,{examTitle:e.ExamConfiguration.ExamTitle,durationInMinutes:e.ExamConfiguration.DurationInMinutes},e.Questions);
+    initialize: function() {
+        this._loadDatabase();
+        this._renderExamCards();
+    },
+
+    _loadDatabase: function() {
+        if (typeof examDatabase === 'undefined') return;
+        for (var i = 0; i < examDatabase.length; i++) {
+            var entry = examDatabase[i];
+            var examKey = entry.ExamName;
+            this.registry.registerExam(examKey, entry.ExamName, entry.ExamIcon);
+            this.registry.registerDepartment(examKey, entry.DepartmentID, entry.DepartmentName, entry.DepartmentIcon, entry.DepartmentDescription);
+            this.registry.registerYear(examKey, entry.DepartmentID, entry.ExamYear, entry.ExamYearLabel || String(entry.ExamYear), entry.ExamYearIcon || '\u{1F4C5}', entry.ExamYearBadge || '');
+            this.registry.registerQuestions(examKey, entry.DepartmentID, entry.ExamYear, { examTitle: entry.ExamConfiguration.ExamTitle, durationInMinutes: entry.ExamConfiguration.DurationInMinutes }, entry.Questions);
         }
     },
 
-    _ex:function(){
-        var g=document.getElementById('g1'),ex=this.rg.exams(),s=this;g.innerHTML='';
-        ex.forEach(function(x){var c=document.createElement('div');c.className='cc';c.innerHTML='<div class="cci">'+x.i+'</div><div class="cct">'+H(x.n)+'</div><div class="ccs">'+x.c+' Dept(s)</div>';c.onclick=function(){s._pe(x.k,c)};g.appendChild(c)});
-    },
-
-    _pe:function(k,el){this.ek=k;this.dk=null;this.yr=null;this._sc('g1',el);document.getElementById('n1').className='sn ok';this._dp(k);this._ss(2);this._bc()},
-
-    _dp:function(ek){
-        var g=document.getElementById('g2'),ds=this.rg.depts(ek),s=this;g.innerHTML='';
-        ds.forEach(function(d){var c=document.createElement('div');c.className='cc';c.innerHTML='<div class="cci">'+d.i+'</div><div class="cct">'+H(d.n)+'</div><div class="ccs">'+H(d.ds)+'</div>';c.onclick=function(){s._pd(d.id,c)};g.appendChild(c)});
-    },
-
-    _pd:function(dk,el){this.dk=dk;this.yr=null;this._sc('g2',el);document.getElementById('n2').className='sn ok';this._yg(this.ek,dk);this._ss(3);this._bc()},
-
-    _yg:function(ek,dk){
-        var g=document.getElementById('g3'),ys=this.rg.yrs(ek,dk),s=this;g.innerHTML='';
-        ys.forEach(function(y){var c=document.createElement('div');c.className='cc';var inner='<div class="cci">'+y.ic+'</div><div class="cct">'+H(y.lb)+'</div>';if(y.bg)inner+='<div class="ccb'+(y.bg.toLowerCase().indexOf('past')>=0?' past':'')+'">'+H(y.bg)+'</div>';c.innerHTML=inner;c.onclick=function(){s._py(y.yr,c)};g.appendChild(c)});
-    },
-
-    _py:function(yr,el){this.yr=yr;this._sc('g3',el);document.getElementById('n3').className='sn ok';this._cf();this._ss(4);this._bc()},
-
-    _cf:function(){
-        var cf=this.rg.cf(this.ek,this.dk,this.yr),qs=this.rg.qs(this.ek,this.dk,this.yr);
-        var seen=new Set(),ss=[];for(var i=0;i<qs.length;i++)if(!seen.has(qs[i].SubjectName)){seen.add(qs[i].SubjectName);ss.push(qs[i].SubjectName)}
-        document.getElementById('ce').textContent=this.rg.en(this.ek);
-        document.getElementById('cd').textContent=this.rg.dn(this.ek,this.dk);
-        document.getElementById('cy').textContent=String(this.yr);
-        document.getElementById('cq').textContent=qs.length;
-        document.getElementById('cr').textContent=cf.durationInMinutes+' Minutes';
-        document.getElementById('cs').textContent=ss.join(', ');
-    },
-
-    _ss:function(n){for(var i=2;i<=4;i++){document.getElementById('s'+i).classList.toggle('gone',i>n);if(i>n)document.getElementById('n'+i).className='sn';else if(i===n)document.getElementById('n'+i).className='sn now'}document.getElementById('s'+n).scrollIntoView({behavior:'smooth',block:'start'})},
-
-    _sc:function(gid,el){var a=document.getElementById(gid).querySelectorAll('.cc');for(var i=0;i<a.length;i++)a[i].classList.remove('sel');el.classList.add('sel')},
-
-    _bc:function(){
-        var p=['<span class="bci">'+H(this.rg.en(this.ek))+'</span>'];
-        if(this.dk)p.push('<span class="bcs">\u203A</span><span class="bci">'+H(this.rg.dn(this.ek,this.dk))+'</span>');
-        if(this.yr)p.push('<span class="bcs">\u203A</span><span class="bci">'+this.yr+'</span>');
-        p.push('<span class="bcs">\u203A</span><span class="bca">'+(this.yr?'Confirm':this.dk?'Select Year':'Select Dept')+'</span>');
-        document.getElementById('bc').innerHTML=p.join('');
-    },
-
-    begin:function(){
-        this.un=document.getElementById('iname').value.trim();
-        this.uc=this.rg.cf(this.ek,this.dk,this.yr);
-        this.qd=this.rg.qs(this.ek,this.dk,this.yr);
-        if(!this.qd.length){alert('No questions available.');return}
-        this.us=[];for(var i=0;i<this.qd.length;i++)this.us.push(new QS());
-        this.su=[];var seen=new Set();
-        for(var j=0;j<this.qd.length;j++)if(!seen.has(this.qd[j].SubjectName)){seen.add(this.qd[j].SubjectName);this.su.push(this.qd[j].SubjectName)}
-        this.ci=0;this.cs='';
-        document.getElementById('v-land').classList.add('gone');
-        document.getElementById('v-test').classList.remove('gone');
-        document.body.classList.add('locked');
-        document.getElementById('tt').textContent=this.uc.examTitle||'Mock Test';
-        document.title=this.uc.examTitle||'Mock Test';
-        var nm=document.getElementById('tn');if(this.un){nm.textContent=this.un;nm.style.display='inline'}else nm.style.display='none';
-        this._tb();this._pl();
-        if(this.su.length>0)this._gs(this.su[0]);
-        var s=this;this.tm=new TM(this.uc.durationInMinutes*60,document.getElementById('tc'),function(){s.sub(true)});this.tm.go();
-    },
-
-    _tb:function(){var c=document.getElementById('ts'),s=this;c.innerHTML='';this.su.forEach(function(sb){var t=document.createElement('div');t.className='stab';t.textContent=sb;t.onclick=function(){s._gs(sb)};c.appendChild(t)})},
-
-    _pl:function(){var g=document.getElementById('tpg'),s=this;g.innerHTML='';for(var i=0;i<this.qd.length;i++){(function(x){var b=document.createElement('div');b.className='pb';b.textContent=s.qd[x].QuestionNumber;b.id='p'+x;b.onclick=function(){s._go(x)};g.appendChild(b)})(i)}},
-
-    _gs:function(sb){
-        this.cs=sb;var tabs=document.querySelectorAll('.stab');for(var i=0;i<tabs.length;i++)tabs[i].classList.toggle('on',tabs[i].textContent===sb);
-        for(var j=0;j<this.qd.length;j++){var b=document.getElementById('p'+j);if(b)b.style.display=this.qd[j].SubjectName===sb?'flex':'none'}
-        var fi=-1;for(var k=0;k<this.qd.length;k++)if(this.qd[k].SubjectName===sb){fi=k;break}
-        if(fi>=0)this._go(fi);
-    },
-
-    _go:function(x){
-        if(x<0||x>=this.qd.length)return;this.ci=x;var q=this.qd[x];
-        if(this.cs!==q.SubjectName){this._gs(q.SubjectName);return}
-        document.getElementById('tqn').textContent='Question '+q.QuestionNumber;
-        document.getElementById('tqb').innerHTML=H(q.QuestionText);
-        var oc=document.getElementById('to'),st=this.us[x],s=this;oc.innerHTML='';
-        q.OptionsValues.forEach(function(o){
-            var lb=document.createElement('label');lb.className='opt'+(st.answer===o?' pk':'');
-            var rd=document.createElement('input');rd.type='radio';rd.name='qr';rd.checked=st.answer===o;
-            rd.onchange=function(){s._an(o,lb)};
-            var sp=document.createElement('span');sp.innerHTML=H(o);
-            lb.appendChild(rd);lb.appendChild(sp);oc.appendChild(lb);
+    _renderExamCards: function() {
+        var grid = document.getElementById('exam-grid');
+        var exams = this.registry.getExams();
+        var self = this;
+        grid.innerHTML = '';
+        exams.forEach(function(exam) {
+            var card = document.createElement('div');
+            card.className = 'select-card';
+            card.innerHTML = '<div class="card-emoji">' + exam.icon + '</div><div class="card-name">' + escapeHtml(exam.name) + '</div><div class="card-desc">' + exam.count + ' Department(s)</div>';
+            card.addEventListener('click', function() { self._onExamSelected(exam.key, card); });
+            grid.appendChild(card);
         });
-        document.getElementById('tsc').scrollTop=0;
-        this._up();
-        if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([document.getElementById('tqb'),document.getElementById('to')]).catch(function(){});
     },
 
-    _an:function(v,el){this.us[this.ci].pick(v);var a=document.querySelectorAll('.opt');for(var i=0;i<a.length;i++)a[i].classList.remove('pk');el.classList.add('pk');this._up()},
-
-    clr:function(){this.us[this.ci].clr();var a=document.querySelectorAll('.opt');for(var i=0;i<a.length;i++){a[i].classList.remove('pk');a[i].querySelector('input').checked=false}this._up()},
-
-    nav:function(d){var n=this.ci+d;while(n>=0&&n<this.qd.length){if(this.qd[n].SubjectName===this.cs){this._go(n);return}n+=d}},
-
-    rev:function(){this.us[this.ci].tog();this._up()},
-
-    _up:function(){
-        for(var i=0;i<this.qd.length;i++){var b=document.getElementById('p'+i);if(!b)continue;b.className='pb';if(i===this.ci)b.classList.add('c');if(this.us[i].review)b.classList.add('r');else if(this.us[i].has())b.classList.add('a')}
-        document.getElementById('trv').innerHTML=this.us[this.ci].review?'\u{1F516} Unmark':'\u{1F516} Review';
+    _onExamSelected: function(examKey, cardElement) {
+        this.selectedExamKey = examKey;
+        this.selectedDeptId = null;
+        this.selectedYear = null;
+        this._highlightCard('exam-grid', cardElement);
+        document.getElementById('step-num-1').className = 'step-number done';
+        this._renderDeptCards(examKey);
+        this._showWizardStep(2);
+        this._updateBreadcrumb();
     },
 
-    sub:function(auto){
-        if(!auto&&!confirm('Submit your exam now?'))return;
-        if(this.tm)this.tm.stop();
-        var az=new AZ(this.qd,this.us),rn=new RN(az,this.uc,this.un,this.tm?this.tm.elapsed:0);
-        document.getElementById('v-test').classList.add('gone');document.body.classList.remove('locked');document.getElementById('v-res').classList.remove('gone');
-        document.getElementById('rb').innerHTML=rn.html();
-        this._fs='all';this._fu='ALL';
-        requestAnimationFrame(function(){setTimeout(function(){var b=document.querySelectorAll('[data-tw]');for(var i=0;i<b.length;i++)b[i].style.width=b[i].getAttribute('data-tw')},120)});
-        if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise().catch(function(){});
+    _renderDeptCards: function(examKey) {
+        var grid = document.getElementById('dept-grid');
+        var departments = this.registry.getDepartments(examKey);
+        var self = this;
+        grid.innerHTML = '';
+        departments.forEach(function(dept) {
+            var card = document.createElement('div');
+            card.className = 'select-card';
+            card.innerHTML = '<div class="card-emoji">' + dept.icon + '</div><div class="card-name">' + escapeHtml(dept.name) + '</div><div class="card-desc">' + escapeHtml(dept.description) + '</div>';
+            card.addEventListener('click', function() { self._onDeptSelected(dept.id, card); });
+            grid.appendChild(card);
+        });
     },
 
-    rft:function(t){this._fs=t;var b=document.querySelectorAll('#rfl .ft');for(var i=0;i<b.length;i++)b[i].classList.toggle('fo',b[i].getAttribute('data-ft')===t);this._rf()},
-
-    rfs:function(s){this._fu=s;var b=document.querySelectorAll('#rsb .ft');for(var i=0;i<b.length;i++)b[i].classList.toggle('fo',b[i].getAttribute('data-sf')===s);this._rf()},
-
-    _rf:function(){var c=document.querySelectorAll('.rq');for(var i=0;i<c.length;i++){var ms=this._fs==='all'||c[i].getAttribute('data-rs')===this._fs;var mu=this._fu==='ALL'||c[i].getAttribute('data-ru')===this._fu;c[i].style.display=ms&&mu?'':'none'}},
-
-    redo:function(){
-        document.getElementById('v-res').classList.add('gone');this.us=[];for(var i=0;i<this.qd.length;i++)this.us.push(new QS());
-        this.ci=0;this._fs='all';this._fu='ALL';
-        document.getElementById('v-test').classList.remove('gone');document.body.classList.add('locked');
-        this._pl();if(this.su.length>0)this._gs(this.su[0]);
-        var s=this;this.tm=new TM(this.uc.durationInMinutes*60,document.getElementById('tc'),function(){s.sub(true)});this.tm.go();
+    _onDeptSelected: function(deptId, cardElement) {
+        this.selectedDeptId = deptId;
+        this.selectedYear = null;
+        this._highlightCard('dept-grid', cardElement);
+        document.getElementById('step-num-2').className = 'step-number done';
+        this._renderYearCards(this.selectedExamKey, deptId);
+        this._showWizardStep(3);
+        this._updateBreadcrumb();
     },
 
-    home:function(){
-        document.getElementById('v-res').classList.add('gone');document.getElementById('v-test').classList.add('gone');document.body.classList.remove('locked');document.getElementById('v-land').classList.remove('gone');
-        for(var i=2;i<=4;i++)document.getElementById('s'+i).classList.add('gone');
-        for(var j=1;j<=4;j++)document.getElementById('n'+j).className=j===1?'sn now':'sn';
-        var a=document.querySelectorAll('.cc');for(var k=0;k<a.length;k++)a[k].classList.remove('sel');
-        this.ek=null;this.dk=null;this.yr=null;this._fs='all';this._fu='ALL';
-        document.getElementById('iname').value='';
-        document.getElementById('bc').innerHTML='<span class="bca">Select Exam</span>';
-        document.title='Mock Test Engine';if(this.tm)this.tm.stop();
+    _renderYearCards: function(examKey, deptId) {
+        var grid = document.getElementById('year-grid');
+        var years = this.registry.getYears(examKey, deptId);
+        var self = this;
+        grid.innerHTML = '';
+        years.forEach(function(yearData) {
+            var card = document.createElement('div');
+            card.className = 'select-card';
+            var inner = '<div class="card-emoji">' + yearData.icon + '</div><div class="card-name">' + escapeHtml(yearData.label) + '</div>';
+            if (yearData.badge) inner += '<div class="card-tag' + (yearData.badge.toLowerCase().indexOf('past') >= 0 ? ' past-tag' : '') + '">' + escapeHtml(yearData.badge) + '</div>';
+            card.innerHTML = inner;
+            card.addEventListener('click', function() { self._onYearSelected(yearData.year, card); });
+            grid.appendChild(card);
+        });
+    },
+
+    _onYearSelected: function(year, cardElement) {
+        this.selectedYear = year;
+        this._highlightCard('year-grid', cardElement);
+        document.getElementById('step-num-3').className = 'step-number done';
+        this._populateConfirmation();
+        this._showWizardStep(4);
+        this._updateBreadcrumb();
+    },
+
+    _populateConfirmation: function() {
+        var config = this.registry.getConfig(this.selectedExamKey, this.selectedDeptId, this.selectedYear);
+        var questions = this.registry.getQuestions(this.selectedExamKey, this.selectedDeptId, this.selectedYear);
+        var seen = new Set();
+        var subjects = [];
+        for (var i = 0; i < questions.length; i++) {
+            if (!seen.has(questions[i].SubjectName)) { seen.add(questions[i].SubjectName); subjects.push(questions[i].SubjectName); }
+        }
+        document.getElementById('conf-exam').textContent = this.registry.getExamName(this.selectedExamKey);
+        document.getElementById('conf-dept').textContent = this.registry.getDeptName(this.selectedExamKey, this.selectedDeptId);
+        document.getElementById('conf-year').textContent = String(this.selectedYear);
+        document.getElementById('conf-count').textContent = questions.length;
+        document.getElementById('conf-duration').textContent = config.durationInMinutes + ' Minutes';
+        document.getElementById('conf-subjects').textContent = subjects.join(', ');
+    },
+
+    _showWizardStep: function(stepNumber) {
+        for (var i = 2; i <= 4; i++) {
+            document.getElementById('wizard-step-' + i).classList.toggle('hidden', i > stepNumber);
+            if (i > stepNumber) document.getElementById('step-num-' + i).className = 'step-number';
+            else if (i === stepNumber) document.getElementById('step-num-' + i).className = 'step-number active';
+        }
+        document.getElementById('wizard-step-' + stepNumber).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    },
+
+    _highlightCard: function(gridId, selectedCard) {
+        var allCards = document.getElementById(gridId).querySelectorAll('.select-card');
+        for (var i = 0; i < allCards.length; i++) allCards[i].classList.remove('chosen');
+        selectedCard.classList.add('chosen');
+    },
+
+    _updateBreadcrumb: function() {
+        var parts = ['<span class="crumb">' + escapeHtml(this.registry.getExamName(this.selectedExamKey)) + '</span>'];
+        if (this.selectedDeptId) parts.push('<span class="crumb-sep">\u203A</span><span class="crumb">' + escapeHtml(this.registry.getDeptName(this.selectedExamKey, this.selectedDeptId)) + '</span>');
+        if (this.selectedYear) parts.push('<span class="crumb-sep">\u203A</span><span class="crumb">' + this.selectedYear + '</span>');
+        var currentStep = this.selectedYear ? 'Confirm' : this.selectedDeptId ? 'Select Year' : 'Select Dept';
+        parts.push('<span class="crumb-sep">\u203A</span><span class="crumb-active">' + currentStep + '</span>');
+        document.getElementById('breadcrumb').innerHTML = parts.join('');
+    },
+
+    beginExam: function() {
+        this.studentName = document.getElementById('input-name').value.trim();
+        this.activeConfig = this.registry.getConfig(this.selectedExamKey, this.selectedDeptId, this.selectedYear);
+        this.activeQuestions = this.registry.getQuestions(this.selectedExamKey, this.selectedDeptId, this.selectedYear);
+        if (!this.activeQuestions.length) { alert('No questions available.'); return; }
+        this.questionStates = [];
+        for (var i = 0; i < this.activeQuestions.length; i++) this.questionStates.push(new QuestionState());
+        this.subjectList = [];
+        var seen = new Set();
+        for (var j = 0; j < this.activeQuestions.length; j++) {
+            if (!seen.has(this.activeQuestions[j].SubjectName)) { seen.add(this.activeQuestions[j].SubjectName); this.subjectList.push(this.activeQuestions[j].SubjectName); }
+        }
+        this.currentQuestionIndex = 0;
+        this.currentSubject = '';
+        document.getElementById('landing-view').classList.add('hidden');
+        document.getElementById('test-view').classList.remove('hidden');
+        document.getElementById('display-exam-title').textContent = this.activeConfig.examTitle || 'Mock Test';
+        document.title = this.activeConfig.examTitle || 'Mock Test';
+        var nameDisplay = document.getElementById('display-student-name');
+        if (this.studentName) { nameDisplay.textContent = this.studentName; nameDisplay.style.display = 'inline'; } else { nameDisplay.style.display = 'none'; }
+        this._buildSubjectTabs();
+        this._buildPalette();
+        if (this.subjectList.length > 0) this._switchToSubject(this.subjectList[0]);
+        var self = this;
+        this.timer = new TimerController(this.activeConfig.durationInMinutes * 60, document.getElementById('display-timer'), function() { self.submitExam(true); });
+        this.timer.start();
+    },
+
+    _buildSubjectTabs: function() {
+        var container = document.getElementById('display-subject-tabs');
+        var self = this;
+        container.innerHTML = '';
+        this.subjectList.forEach(function(subject) {
+            var tab = document.createElement('div');
+            tab.className = 'subject-tab';
+            tab.textContent = subject;
+            tab.addEventListener('click', function() { self._switchToSubject(subject); });
+            container.appendChild(tab);
+        });
+    },
+
+    _buildPalette: function() {
+        var grid = document.getElementById('display-palette');
+        var self = this;
+        grid.innerHTML = '';
+        for (var i = 0; i < this.activeQuestions.length; i++) {
+            (function(index) {
+                var button = document.createElement('div');
+                button.className = 'palette-btn';
+                button.textContent = self.activeQuestions[index].QuestionNumber;
+                button.id = 'palette-' + index;
+                button.addEventListener('click', function() { self._goToQuestion(index); });
+                grid.appendChild(button);
+            })(i);
+        }
+    },
+
+    _switchToSubject: function(subject) {
+        this.currentSubject = subject;
+        var tabs = document.querySelectorAll('.subject-tab');
+        for (var i = 0; i < tabs.length; i++) tabs[i].classList.toggle('active-tab', tabs[i].textContent === subject);
+        for (var j = 0; j < this.activeQuestions.length; j++) {
+            var btn = document.getElementById('palette-' + j);
+            if (btn) btn.style.display = this.activeQuestions[j].SubjectName === subject ? 'flex' : 'none';
+        }
+        var firstInSubject = -1;
+        for (var k = 0; k < this.activeQuestions.length; k++) {
+            if (this.activeQuestions[k].SubjectName === subject) { firstInSubject = k; break; }
+        }
+        if (firstInSubject >= 0) this._goToQuestion(firstInSubject);
+    },
+
+    _goToQuestion: function(index) {
+        if (index < 0 || index >= this.activeQuestions.length) return;
+        this.currentQuestionIndex = index;
+        var question = this.activeQuestions[index];
+        if (this.currentSubject !== question.SubjectName) { this._switchToSubject(question.SubjectName); return; }
+        document.getElementById('display-question-number').textContent = 'Question ' + question.QuestionNumber;
+        document.getElementById('display-question-text').innerHTML = escapeHtml(question.QuestionText);
+        var optionsContainer = document.getElementById('display-options');
+        var state = this.questionStates[index];
+        var self = this;
+        optionsContainer.innerHTML = '';
+        question.OptionsValues.forEach(function(optionText) {
+            var label = document.createElement('label');
+            label.className = 'option-row' + (state.answer === optionText ? ' selected-option' : '');
+            var radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = 'question-answer';
+            radio.checked = state.answer === optionText;
+            radio.addEventListener('change', function() { self._onAnswerSelected(optionText, label); });
+            var span = document.createElement('span');
+            span.innerHTML = escapeHtml(optionText);
+            label.appendChild(radio);
+            label.appendChild(span);
+            optionsContainer.appendChild(label);
+        });
+        document.getElementById('question-scroll-area').scrollTop = 0;
+        this._refreshPalette();
+        if (window.MathJax && MathJax.typesetPromise) {
+            MathJax.typesetPromise([document.getElementById('display-question-text'), document.getElementById('display-options')]).catch(function() {});
+        }
+    },
+
+    _onAnswerSelected: function(value, labelElement) {
+        this.questionStates[this.currentQuestionIndex].selectAnswer(value);
+        var allOptions = document.querySelectorAll('.option-row');
+        for (var i = 0; i < allOptions.length; i++) allOptions[i].classList.remove('selected-option');
+        labelElement.classList.add('selected-option');
+        this._refreshPalette();
+    },
+
+    clearAnswer: function() {
+        this.questionStates[this.currentQuestionIndex].clearAnswer();
+        var allOptions = document.querySelectorAll('.option-row');
+        for (var i = 0; i < allOptions.length; i++) { allOptions[i].classList.remove('selected-option'); allOptions[i].querySelector('input').checked = false; }
+        this._refreshPalette();
+    },
+
+    navigateQuestion: function(direction) {
+        var nextIndex = this.currentQuestionIndex + direction;
+        while (nextIndex >= 0 && nextIndex < this.activeQuestions.length) {
+            if (this.activeQuestions[nextIndex].SubjectName === this.currentSubject) { this._goToQuestion(nextIndex); return; }
+            nextIndex += direction;
+        }
+    },
+
+    toggleReview: function() {
+        this.questionStates[this.currentQuestionIndex].toggleReview();
+        this._refreshPalette();
+    },
+
+    _refreshPalette: function() {
+        for (var i = 0; i < this.activeQuestions.length; i++) {
+            var btn = document.getElementById('palette-' + i);
+            if (!btn) continue;
+            btn.className = 'palette-btn';
+            if (i === this.currentQuestionIndex) btn.classList.add('current-btn');
+            if (this.questionStates[i].review) btn.classList.add('review-btn-state');
+            else if (this.questionStates[i].hasAnswer()) btn.classList.add('answered-btn');
+        }
+        document.getElementById('display-review-toggle').innerHTML = this.questionStates[this.currentQuestionIndex].review ? '\u{1F516} Unmark' : '\u{1F516} Review';
+    },
+
+    submitExam: function(autoSubmit) {
+        if (!autoSubmit && !confirm('Submit your exam now?')) return;
+        if (this.timer) this.timer.stop();
+        var analysis = new AnalysisEngine(this.activeQuestions, this.questionStates);
+        var resultsView = new ResultsView(analysis, this.activeConfig, this.studentName, this.timer ? this.timer.elapsed : 0);
+        document.getElementById('test-view').classList.add('hidden');
+        document.getElementById('results-view').classList.remove('hidden');
+        document.getElementById('results-output').innerHTML = resultsView.generateHtml();
+        this._activeStatusFilter = 'all';
+        this._activeSubjectFilter = 'ALL';
+        requestAnimationFrame(function() {
+            setTimeout(function() {
+                var bars = document.querySelectorAll('[data-target-width]');
+                for (var i = 0; i < bars.length; i++) bars[i].style.width = bars[i].getAttribute('data-target-width');
+            }, 120);
+        });
+        if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise().catch(function() {});
+    },
+
+    filterByStatus: function(status) {
+        this._activeStatusFilter = status;
+        var chips = document.querySelectorAll('#status-filter-row .filter-chip');
+        for (var i = 0; i < chips.length; i++) chips[i].classList.toggle('chip-active', chips[i].getAttribute('data-status-filter') === status);
+        this._applyReviewFilters();
+    },
+
+    filterBySubject: function(subject) {
+        this._activeSubjectFilter = subject;
+        var chips = document.querySelectorAll('#subject-filter-row .filter-chip');
+        for (var i = 0; i < chips.length; i++) chips[i].classList.toggle('chip-active', chips[i].getAttribute('data-subject-filter') === subject);
+        this._applyReviewFilters();
+    },
+
+    _applyReviewFilters: function() {
+        var cards = document.querySelectorAll('.review-card');
+        for (var i = 0; i < cards.length; i++) {
+            var matchesStatus = this._activeStatusFilter === 'all' || cards[i].getAttribute('data-review-status') === this._activeStatusFilter;
+            var matchesSubject = this._activeSubjectFilter === 'ALL' || cards[i].getAttribute('data-review-subject') === this._activeSubjectFilter;
+            cards[i].style.display = matchesStatus && matchesSubject ? '' : 'none';
+        }
+    },
+
+    retakeExam: function() {
+        document.getElementById('results-view').classList.add('hidden');
+        this.questionStates = [];
+        for (var i = 0; i < this.activeQuestions.length; i++) this.questionStates.push(new QuestionState());
+        this.currentQuestionIndex = 0;
+        this._activeStatusFilter = 'all';
+        this._activeSubjectFilter = 'ALL';
+        document.getElementById('test-view').classList.remove('hidden');
+        this._buildPalette();
+        if (this.subjectList.length > 0) this._switchToSubject(this.subjectList[0]);
+        var self = this;
+        this.timer = new TimerController(this.activeConfig.durationInMinutes * 60, document.getElementById('display-timer'), function() { self.submitExam(true); });
+        this.timer.start();
+    },
+
+    goHome: function() {
+        document.getElementById('results-view').classList.add('hidden');
+        document.getElementById('test-view').classList.add('hidden');
+        document.getElementById('landing-view').classList.remove('hidden');
+        for (var i = 2; i <= 4; i++) document.getElementById('wizard-step-' + i).classList.add('hidden');
+        for (var j = 1; j <= 4; j++) document.getElementById('step-num-' + j).className = j === 1 ? 'step-number active' : 'step-number';
+        var allCards = document.querySelectorAll('.select-card');
+        for (var k = 0; k < allCards.length; k++) allCards[k].classList.remove('chosen');
+        this.selectedExamKey = null;
+        this.selectedDeptId = null;
+        this.selectedYear = null;
+        this._activeStatusFilter = 'all';
+        this._activeSubjectFilter = 'ALL';
+        document.getElementById('input-name').value = '';
+        document.getElementById('breadcrumb').innerHTML = '<span class="crumb-active">Select Exam</span>';
+        document.title = 'Mock Test Engine';
+        if (this.timer) this.timer.stop();
     }
 };
 
-window.onload=function(){E.init()};
+window.onload = function() { TestEngine.initialize(); };
