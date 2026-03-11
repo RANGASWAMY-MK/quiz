@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Career Guide Dashboard</title>
+<style>
+:root{
+  --mpc:#3B82F6;
+  --bipc:#10B981;
+  --cec:#F59E0B;
+  --diploma:#F97316;
+  --iti:#EF4444;
+  --skill:#8B5CF6;
+  --after12:#0077b6;
+  --eng:#0284C7;
+  --med:#16A34A;
+  --com:#F59E0B;
+  --art:#8B5CF6;
+  --white:#fff;
+  --light:#F0F9FF;
+  --dark:#0F172A;
+  --shadow: rgba(0,0,0,0.15);
+  --glass: rgba(255,255,255,0.7);
+  --gradient1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+*{
+  box-sizing: border-box;
+}
+
+body{
+  background: linear-gradient(135deg, #e0e5ec 0%, #f0f9ff 50%, #dbeafe 100%);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin:0;
+  padding:20px;
+  overflow-x:hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+.particles{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.particle{
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--mpc);
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: float 15s infinite ease-in-out;
+}
+
+.particle:nth-child(1){ left:10%; animation-delay:0s; background:var(--mpc); }
+.particle:nth-child(2){ left:20%; animation-delay:2s; background:var(--bipc); }
+.particle:nth-child(3){ left:30%; animation-delay:4s; background:var(--cec); }
+.particle:nth-child(4){ left:40%; animation-delay:1s; background:var(--diploma); }
+.particle:nth-child(5){ left:50%; animation-delay:3s; background:var(--skill); }
+.particle:nth-child(6){ left:60%; animation-delay:5s; background:var(--after12); }
+.particle:nth-child(7){ left:70%; animation-delay:2.5s; background:var(--eng); }
+.particle:nth-child(8){ left:80%; animation-delay:4.5s; background:var(--med); }
+.particle:nth-child(9){ left:90%; animation-delay:1.5s; background:var(--art); }
+.particle:nth-child(10){ left:15%; animation-delay:3.5s; background:var(--com); }
+
+@keyframes float{
+  0%, 100%{ transform: translateY(100vh) scale(0); opacity:0; }
+  10%{ opacity:0.3; }
+  50%{ opacity:0.5; transform: translateY(50vh) scale(1); }
+  90%{ opacity:0.3; }
+  100%{ transform: translateY(-10vh) scale(0.5); opacity:0; }
+}
+
+header{
+  text-align:center;
+  margin-bottom:30px;
+  position: relative;
+  z-index: 1;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+@keyframes fadeInDown{
+  from{ opacity:0; transform: translateY(-30px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+
+header h1{
+  font-size:2.5rem;
+  background: linear-gradient(90deg, var(--mpc), var(--skill), var(--bipc));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientText 3s linear infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes gradientText{
+  0%{ background-position: 0% center; }
+  100%{ background-position: 200% center; }
+}
+
+header p{
+  color:#555;
+  font-size: 1.1rem;
+  animation: fadeIn 1s ease-out 0.3s both;
+}
+
+@keyframes fadeIn{
+  from{ opacity:0; }
+  to{ opacity:1; }
+}
+
+.tabs{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin-bottom:30px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.tab{
+  padding:12px 30px;
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border-radius:50px;
+  cursor:pointer;
+  box-shadow: 0 4px 15px var(--shadow);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgba(255,255,255,0.5);
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.tab::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: left 0.5s;
+}
+
+.tab:hover::before{
+  left: 100%;
+}
+
+.tab:hover{
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(0,119,182,0.3);
+}
+
+.tab.active{
+  background: var(--gradient3);
+  color:#fff;
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(79,172,254,0.4);
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+  gap: 25px;
+  position:relative;
+  z-index: 1;
+  transition: all 0.3s;
+  perspective: 1000px;
+}
+
+.card{
+  background: var(--glass);
+  backdrop-filter: blur(15px);
+  border-radius:20px;
+  box-shadow: 0 8px 32px var(--shadow);
+  padding:25px;
+  text-align:center;
+  cursor:pointer;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  z-index:1;
+  border: 1px solid rgba(255,255,255,0.6);
+  transform-style: preserve-3d;
+  animation: cardEntrance 0.6s ease-out backwards;
+  overflow: hidden;
+}
+
+.card::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.card::after{
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.card.ripple::after{
+  width: 300px;
+  height: 300px;
+  opacity: 0;
+}
+
+@keyframes cardEntrance{
+  from{
+    opacity: 0;
+    transform: translateY(50px) rotateX(-10deg);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
+}
+
+.card:hover{
+  transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.card .icon{
+  font-size:3rem;
+  margin-bottom:15px;
+  display: inline-block;
+  animation: iconPulse 2s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+@keyframes iconPulse{
+  0%, 100%{ transform: scale(1); }
+  50%{ transform: scale(1.1); }
+}
+
+.card .name{
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+
+.card.focused{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.1) !important;
+  width: 90%;
+  max-width: 450px;
+  z-index:999;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+  animation: focusIn 0.4s ease-out;
+}
+
+@keyframes focusIn{
+  from{ opacity: 0.5; transform: translate(-50%, -50%) scale(0.8); }
+  to{ opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.card.dimmed{
+  opacity:0.2;
+  transform: scale(0.9);
+  filter: blur(2px);
+}
+
+.overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s;
+}
+
+.overlay.active{
+  opacity: 1;
+  visibility: visible;
+}
+
+.details-panel{
+  margin-top:30px;
+  padding:30px;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border-radius:20px;
+  box-shadow: 0 8px 32px var(--shadow);
+  opacity:0;
+  max-height:0;
+  overflow:hidden;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(255,255,255,0.6);
+  transform: translateY(20px);
+}
+
+.details-panel.active{
+  opacity:1;
+  max-height:3000px;
+  transform: translateY(0);
+}
+
+.details-panel h2{
+  background: var(--gradient1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp{
+  from{ opacity:0; transform: translateY(20px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+
+.details-panel b{
+  color:var(--dark);
+}
+
+.badge{
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:50px;
+  margin:5px 5px 5px 0;
+  font-size:0.85rem;
+  color:#fff;
+  font-weight: 500;
+  transition: all 0.3s;
+  animation: badgePop 0.4s ease-out backwards;
+}
+
+.badge:hover{
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+@keyframes badgePop{
+  from{ opacity:0; transform: scale(0.5); }
+  to{ opacity:1; transform: scale(1); }
+}
+
+.duration{background: var(--gradient3);}
+.exams{background: linear-gradient(135deg, var(--bipc), #059669);}
+.jobs{background: linear-gradient(135deg, var(--cec), #D97706);}
+.salary{background: linear-gradient(135deg, var(--diploma), #EA580C);}
+.focus{background: linear-gradient(135deg, var(--skill), #7C3AED);}
+.after12{background: var(--gradient1);}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px var(--shadow);
+  animation: tableSlide 0.6s ease-out;
+}
+
+@keyframes tableSlide{
+  from{ opacity:0; transform: translateX(-20px); }
+  to{ opacity:1; transform: translateX(0); }
+}
+
+th{
+  background: var(--gradient1);
+  color: #fff;
+  padding: 15px 10px;
+  text-align: left;
+  font-weight: 600;
+}
+
+td {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding: 12px 10px;
+  background: var(--white);
+  transition: all 0.3s;
+}
+
+tr{
+  transition: all 0.3s;
+}
+
+tr:hover td{
+  background: linear-gradient(90deg, rgba(79,172,254,0.1), rgba(0,242,254,0.1));
+  transform: scale(1.01);
+}
+
+.branch-icon{
+  font-size: 1.3rem;
+  margin-right:8px;
+  display: inline-block;
+  animation: iconBounce 0.5s ease-out;
+}
+
+@keyframes iconBounce{
+  0%, 100%{ transform: translateY(0); }
+  50%{ transform: translateY(-5px); }
+}
+
+.close-btn{
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: var(--gradient2);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  z-index: 1000;
+}
+
+.close-btn:hover{
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 4px 15px rgba(245,87,108,0.4);
+}
+
+.loading{
+  position: relative;
+  overflow: hidden;
+}
+
+.loading::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer{
+  0%{ left: -100%; }
+  100%{ left: 100%; }
+}
+
+.info-row{
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.info-row:hover{
+  background: rgba(255,255,255,0.8);
+  transform: translateX(5px);
+}
+
+.info-row b{
+  min-width: 140px;
+}
+
+@media (max-width: 768px){
+  header h1{ font-size: 1.8rem; }
+  .card.focused{
+    width: 95%;
+    max-width: none;
+  }
+  .tabs{ gap: 10px; }
+  .tab{ padding: 10px 20px; font-size: 0.9rem; }
+  table{ font-size: 0.85rem; }
+  th, td{ padding: 8px 5px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="particles">
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<header>
+  <h1>🎓 Student Career Guide Dashboard</h1>
+  <p>Click a tab → then a course to see detailed info</p>
+</header>
+
+<div class="tabs">
+  <div class="tab active" data-path="after10">After 10th</div>
+  <div class="tab" data-path="after12">After 12th</div>
+</div>
+
+<div class="grid" id="course-grid"></div>
+<div class="details-panel" id="details-panel"></div>
+
+<script>
+const coursesData = {
+  after10:[
+    { name:"MPC (Maths, Physics, Chemistry)", icon:"🔵", duration:"2 Years", eligibility:"Pass 10th with Maths", subjects:"Maths, Physics, Chemistry", exams:"JEE, EAMCET, CUET", higherStudies:"B.Tech, B.Sc, Architecture", jobs:"Software Engineer, Core Engineer", salary:"₹25k – ₹70k/month", focus:"Good at problem-solving & maths" },
+    { name:"BiPC (Biology, Physics, Chemistry)", icon:"🧬", duration:"2 Years", eligibility:"Pass 10th with Science", subjects:"Biology, Physics, Chemistry", exams:"NEET", higherStudies:"MBBS, BDS, B.Pharmacy, Nursing", jobs:"Doctor, Pharmacist", salary:"₹40k – ₹1,00,000+", focus:"Interested in medical field" },
+    { name:"CEC (Commerce, Economics, Civics)", icon:"💼", duration:"2 Years", eligibility:"Pass 10th", subjects:"Commerce, Economics, Civics", exams:"CA Foundation, CUET", higherStudies:"B.Com, BBA, CA", jobs:"Accountant, Banker, Manager", salary:"₹20k – ₹70k", focus:"Good with numbers & commerce" },
+    { name:"Diploma – CSE", icon:"⚙️", duration:"3 Years", eligibility:"10th Pass", focus:"Programming, Networking", higherStudies:"B.Tech via ECET", jobs:"Software Trainee, IT Support", salary:"₹15k – ₹35k" },
+    { name:"ITI – Electrician", icon:"🔧", duration:"1–2 Years", eligibility:"10th Pass", focus:"Wiring & Maintenance", jobs:"Electrician, Maintenance Technician", salary:"₹12k – ₹30k" },
+    { name:"Skill – Digital Marketing", icon:"📈", duration:"3–6 Months", focus:"SEO, Social Media", jobs:"Marketing Executive, Freelancer", salary:"₹15k – ₹35k" }
+  ],
+  after12:[
+    {
+      name:"Engineering / Technology",
+      icon:"⚙️",
+      duration:"4 Years",
+      color:"var(--eng)",
+      details:[
+        { icon:"💻", branch:"Computer Science", description:"Programming, AI, Software, Data Structures", jobs:"Software Developer, AI Engineer, Data Scientist", higherStudies:"M.Tech, MBA, PhD", salary:"₹4–12 LPA" },
+        { icon:"🛠️", branch:"Mechanical", description:"Machines, Engines, Robotics, Manufacturing", jobs:"Mechanical Engineer, CAD Designer", higherStudies:"M.Tech, MBA", salary:"₹3–8 LPA" },
+        { icon:"🏗️", branch:"Civil", description:"Buildings, Roads, Bridges, Infrastructure", jobs:"Civil Engineer, Site Engineer", higherStudies:"M.Tech, MBA", salary:"₹3–7 LPA" },
+        { icon:"💡", branch:"Electrical", description:"Power systems, Electronics, Circuits", jobs:"Electrical Engineer, Electronics Designer", higherStudies:"M.Tech, MBA", salary:"₹3–8 LPA" }
+      ]
+    },
+    {
+      name:"Medical / Healthcare",
+      icon:"🩺",
+      duration:"5 yrs",
+      color:"var(--med)",
+      details:[
+        { icon:"🧑‍⚕️", branch:"MBBS", description:"Doctor training and patient care", jobs:"Doctor, Surgeon", higherStudies:"MD, MS", salary:"₹6–20 LPA" },
+        { icon:"🦷", branch:"BDS", description:"Dental science", jobs:"Dentist", higherStudies:"MDS", salary:"₹5–15 LPA" },
+        { icon:"👩‍⚕️", branch:"BSc Nursing", description:"Nursing and healthcare", jobs:"Nurse, Clinical Coordinator", higherStudies:"MSc Nursing", salary:"₹3–8 LPA" },
+        { icon:"💊", branch:"BPharm", description:"Pharmacy and drug research", jobs:"Pharmacist, Researcher", higherStudies:"MPharm, MBA Pharma", salary:"₹4–10 LPA" }
+      ]
+    },
+    {
+      name:"Commerce & Management",
+      icon:"💼",
+      duration:"3–5 yrs",
+      color:"var(--com)",
+      details:[
+        { icon:"📊", branch:"BCom", description:"Accounting, finance, economics", jobs:"Accountant, Auditor", higherStudies:"MCom, MBA", salary:"₹3–6 LPA" },
+        { icon:"📈", branch:"BBA", description:"Business management", jobs:"Manager, HR Executive", higherStudies:"MBA", salary:"₹3–5 LPA" },
+        { icon:"🧾", branch:"CA", description:"Chartered Accountancy", jobs:"CA, Tax Consultant", higherStudies:"Specialization Courses", salary:"₹4–15 LPA" }
+      ]
+    },
+    {
+      name:"Arts / Humanities",
+      icon:"🎨",
+      duration:"3 yrs",
+      color:"var(--art)",
+      details:[
+        { icon:"📚", branch:"BA", description:"Social sciences, literature, history", jobs:"Teacher, Researcher, Writer", higherStudies:"MA, MPhil, PhD", salary:"₹3–6 LPA" },
+        { icon:"⚖️", branch:"LLB", description:"Law and legal studies", jobs:"Lawyer, Advocate", higherStudies:"LLM, PhD Law", salary:"₹4–8 LPA" },
+        { icon:"📰", branch:"BJMC", description:"Journalism & media", jobs:"Journalist, PR Executive", higherStudies:"Masters in Media / Journalism", salary:"₹3–7 LPA" }
+      ]
+    }
+  ]
+};
+
+const grid = document.getElementById("course-grid");
+const panel = document.getElementById("details-panel");
+const overlay = document.getElementById("overlay");
+let focusedCard = null;
+
+function renderCourses(path){
+  grid.innerHTML = "";
+  panel.classList.remove("active");
+  overlay.classList.remove("active");
+  focusedCard = null;
+
+  coursesData[path].forEach((course, index)=>{
+    const card = document.createElement("div");
+    card.className = "card";
+    card.style.animationDelay = `${index * 0.1}s`;
+    card.innerHTML = `
+      <div class="icon">${course.icon}</div>
+      <div class="name">${course.name}</div>
+      <div class="badge duration">${course.duration}</div>
+    `;
+    grid.appendChild(card);
+
+    card.addEventListener("click", (e)=>{
+      card.classList.add("ripple");
+      setTimeout(() => card.classList.remove("ripple"), 600);
+
+      if(focusedCard===card){
+        closeFocusedCard();
+      } else {
+        if(focusedCard) closeFocusedCard();
+        focusedCard = card;
+        card.classList.add("focused");
+        overlay.classList.add("active");
+        grid.querySelectorAll(".card").forEach(c=>{
+          if(c !== card) c.classList.add("dimmed");
+        });
+
+        let html = `<button class="close-btn" onclick="closeFocusedCard()">✕</button>`;
+        html += `<h2>${course.icon} ${course.name}</h2>`;
+        
+        if(course.duration) html += `<div class="info-row"><b>Duration:</b> ${course.duration}</div>`;
+        if(course.eligibility) html += `<div class="info-row"><b>Eligibility:</b> ${course.eligibility}</div>`;
+        if(course.subjects) html += `<div class="info-row"><b>Subjects:</b> ${course.subjects}</div>`;
+        if(course.focus) html += `<span class="badge focus" style="animation-delay:0.1s">${course.focus}</span>`;
+        if(course.exams) html += `<span class="badge exams" style="animation-delay:0.2s">Exams: ${course.exams}</span>`;
+        if(course.higherStudies) html += `<div class="info-row"><b>Higher Studies:</b> ${course.higherStudies}</div>`;
+        if(course.jobs) html += `<span class="badge jobs" style="animation-delay:0.3s">Jobs: ${course.jobs}</span>`;
+        if(course.salary) html += `<span class="badge salary" style="animation-delay:0.4s">Salary: ${course.salary}</span>`;
+
+        if(course.details){
+          html += `<h3 style="margin-top:20px;">Branches & Opportunities:</h3>`;
+          html += `<table><thead><tr><th>Branch</th><th>Description</th><th>Job Roles</th><th>Higher Studies</th><th>Salary</th></tr></thead><tbody>`;
+          course.details.forEach(d=>{
+            html += `<tr><td><span class="branch-icon">${d.icon}</span>${d.branch}</td><td>${d.description}</td><td>${d.jobs}</td><td>${d.higherStudies}</td><td>${d.salary}</td></tr>`;
+          });
+          html += `</tbody></table>`;
+        }
+
+        panel.innerHTML = html;
+        panel.classList.add("active");
+        setTimeout(() => panel.scrollIntoView({behavior:"smooth", block:"start"}), 100);
+      }
+    });
+
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = (y - centerY) / 10;
+      const rotateY = (centerX - x) / 10;
+      
+      if(!card.classList.contains("focused")){
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+      }
+    });
+
+    card.addEventListener("mouseleave", () => {
+      if(!card.classList.contains("focused")){
+        card.style.transform = "";
+      }
+    });
+  });
+}
+
+function closeFocusedCard(){
+  if(focusedCard){
+    focusedCard.classList.remove("focused");
+    focusedCard.style.transform = "";
+    grid.querySelectorAll(".card").forEach(c=>c.classList.remove("dimmed"));
+    panel.classList.remove("active");
+    overlay.classList.remove("active");
+    focusedCard = null;
+  }
+}
+
+overlay.addEventListener("click", closeFocusedCard);
+
+document.addEventListener("keydown", (e) => {
+  if(e.key === "Escape") closeFocusedCard();
+});
+
+const tabs = document.querySelectorAll(".tab");
+tabs.forEach(tab=>{
+  tab.addEventListener("click", ()=>{
+    tabs.forEach(t=>t.classList.remove("active"));
+    tab.classList.add("active");
+    closeFocusedCard();
+    renderCourses(tab.getAttribute("data-path"));
+  });
+});
+
+renderCourses("after10");
+</script>
+
+</body>
+</html>
